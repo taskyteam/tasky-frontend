@@ -47,7 +47,11 @@ class CreateTask extends React.Component{
                     <label htmlFor="description">Description</label>
                     <input type="text" name="description" onChange={(event) => this.setState({description: event.target.value})} />
                     <label htmlFor="assigned_to">Assigned To</label>
-                    <input type="text" name="assigned_to" onChange={(event) => this.setState({assigned_to: event.target.value})} />
+                    <select name="assigned_to" onChange={(event) => this.setState({assigned_to: event.target.value})}>
+                        {/* users.map((user) => {
+                            <option value={user.id}>{user.username}</option>
+                        }) */}
+                        </select>
                     <label htmlFor="status">Status</label>
                     <input type="text" name="status" onChange={(event) => this.setState({status: event.target.value})} />
                     <label htmlFor="points">Points</label>
