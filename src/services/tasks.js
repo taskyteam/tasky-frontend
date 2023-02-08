@@ -25,6 +25,7 @@ export async function createTask(title, description, points, assigned_to, househ
     let response = await fetch(`${TASKY_API_URL}/tasks/${user_id}`);
     let data = await response.json();
     console.log(data)
+    return data;
   }
 
   export async function getUsers(household_id) {

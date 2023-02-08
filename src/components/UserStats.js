@@ -25,7 +25,7 @@ class UserStats extends Component {
       return
     } else {
       return (
-        <div>{finishedTasks.length} out of {tasks.length} complete</div>
+        <div>{finishedTasks.length} out of {tasks.length} tasks complete</div>
       )
 
     }
