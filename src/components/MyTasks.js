@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Database from './Database';
 
 class MyTasks extends Component {
   constructor(props) {
@@ -9,10 +8,16 @@ class MyTasks extends Component {
     };
   }
 
-  async componentDidMount() {
-    const userId = this.props.userId;
-    const tasks = await Database.getTasksByUser(userId);
-    this.setState({ tasks });
+  componentDidMount() {
+    const userId = 2; //this.props.userId;
+    this.getUserTasks(userId);
+  }
+
+  getUserTasks = async (user_id) => {
+    const response = await fetch(`http://localhost:3333/tasks/${user_id}`);
+    const data = await response.json();
+    console.log(data)
+    this.setState({ tasks: data });
   }
 
   render() {

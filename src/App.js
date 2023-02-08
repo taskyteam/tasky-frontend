@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import CreateTask  from '../../tasky-frontend/src/components/CreateTask';
+import MyTasks from './components/MyTasks';
 
 function App() {
   return (
@@ -8,7 +9,8 @@ function App() {
       <BrowserRouter>
       {/*   <Header path="/"/> */}
         
-          <CreateTask path="/create-task" component={CreateTask} />
+          <MyTasks path="/create-task" component={MyTasks} /> 
+
          
 
         
