@@ -10,8 +10,8 @@ function App() {
       <BrowserRouter>
         <Header exact path="/" />
         <Switch>
-          <Route path="/home" component={Home} />
-          <Route path="/create-task" component={CreateTask} />
+          <Route exact path="/home" component={Home} />
+          <Route exact path="/create-task" component={CreateTask} />
         </Switch>
       </BrowserRouter>
     </div>
