@@ -19,6 +19,14 @@ export async function createTask(title, description, points, assigned_to, househ
     return data;
   }
 
+  
+
+  export async function getUserTasks(user_id) {
+    let response = await fetch(`${TASKY_API_URL}/tasks/${user_id}`);
+    let data = await response.json();
+    console.log(data)
+  }
+
   export async function getUsers(household_id) {
     const response = await fetch(`${TASKY_API_URL}/tasks/users/${household_id}`, {
       method: 'GET',
@@ -28,5 +36,6 @@ export async function createTask(title, description, points, assigned_to, househ
       }
     });
     const data = await response.json();
+
     return data;
   }
