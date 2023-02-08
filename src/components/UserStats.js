@@ -19,8 +19,8 @@ class UserStats extends Component {
 
   render() {
     const tasks = this.state.tasks;
-    const openTasks = tasks.filter(task => task.status == 'open');
-    const finishedTasks = tasks.filter(task => task.status == 'finished');
+    //const openTasks = tasks.filter(task => task.status === 'open');
+    const finishedTasks = tasks.filter(task => task.status === 'finished');
     if (!tasks) {
       return
     } else {

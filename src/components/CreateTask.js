@@ -1,5 +1,6 @@
 import React from "react";
 import { createTask, getUsers } from "../services/tasks";
+import { Link } from "react-router-dom";
 
 class CreateTask extends React.Component {
   //title, description, assigned_to, points, status, household_id
@@ -8,6 +9,7 @@ class CreateTask extends React.Component {
     this.state = {
       task: {},
       users: [],
+      isFilled: false,
     };
   } 
 
@@ -33,6 +35,7 @@ class CreateTask extends React.Component {
         status,
         household_id
       );
+    
       this.setState({
         task: newTask,
       });
@@ -49,6 +52,9 @@ class CreateTask extends React.Component {
     //     points: '',
     // });
   };
+
+  
+
 
   async componentDidMount() {
     try {
@@ -102,7 +108,23 @@ class CreateTask extends React.Component {
             name="points"
             onChange={(event) => this.setState({ points: event.target.value })}
           />
-          <button type="submit">Create Task</button>
+          {/* <Link
+            to="/home"
+            //legg till check om form er tomt
+            // onClick={() => {
+            // window.location.href = "/home";
+           //  }}
+          > */}
+            <button type="submit">Create Task</button>
+         {/*  </Link> */}
+          <Link
+            to="/home"
+            onClick={() => {
+              window.location.href = "/home";
+            }}
+          >
+            <button type="submit">Back</button>
+          </Link>
         </form>
       </div>
     );
