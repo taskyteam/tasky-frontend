@@ -38,8 +38,9 @@ class Home extends Component {
   }
 
   render() {
-    const { currentUser, 
-    //    household_tasks, isLoading 
+    const {
+      currentUser,
+      //    household_tasks, isLoading
     } = this.state;
     return (
       <div>
@@ -47,9 +48,30 @@ class Home extends Component {
         <div className="household-info">
           <UserStats />
 
-            <Link to="/"><button className="my-tasks-btn" >My tasks</button></Link>
-            <Link to="/"><button className="househould-tasks-btn">Household tasks</button></Link>
-            <Link to="/create-task"  onClick={() => {window.location.href="/create-task"}}><button className="add-task">Add Task</button></Link>
+          <Link
+            to="/my-tasks"
+            onClick={() => {
+              window.location.href = "/my-tasks";
+            }}
+          >
+            <button className="my-tasks-btn">My tasks</button>
+          </Link>
+          <Link
+            to="/household-tasks"
+            onClick={() => {
+              window.location.href = "/household-tasks";
+            }}
+          >
+            <button className="househould-tasks-btn">Household tasks</button>
+          </Link>
+          <Link
+            to="/create-task"
+            onClick={() => {
+              window.location.href = "/create-task";
+            }}
+          >
+            <button className="add-task">Add Task</button>
+          </Link>
 
           {/* {isLoading ? (
             <div>loading...</div>

@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
-import { getUserTasks } from '../services/tasks';
+import { getTasksByHousehold } from '../services/tasks';
 
 class MyTasks extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks: []
+      tasks: [],
+      isLoading: false,
     };
   }
 
   async componentDidMount() {
     this.setState({ isLoading: true });
-    const userId = 2; //this.props.userId;
+    const household_id = 1; //this.props.userId;
 
     this.setState({
-      tasks: await getUserTasks(userId),
+      tasks: await getTasksByHousehold(household_id),
+      
       isLoading: false,
     })
 
@@ -27,14 +29,13 @@ class MyTasks extends Component {
   //   this.setState({ tasks: data });
   // }
 
-
   render() {
-    const { tasks, isLoading } = this.state;
+    const { tasks } = this.state;
     return (
       <div>
-        <h2>My Tasks</h2>
-        {isLoading ? <div>loading...</div> : tasks.map(task => (
-          <div key={task.id}>
+        <h2>Household Tasks</h2>
+        {tasks.map((task, i) => (
+          <div key={i}>
             <p>Title: {task.title}</p>
             <p>Status: {task.status}</p>
             <p>Points: {task.points}</p>
