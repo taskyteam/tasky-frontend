@@ -15,3 +15,11 @@ export async function createTask(obj) {
     const data = await response.json();
     return data;
   }
+  
+
+  export async function getUserTasks(user_id) {
+    let response = await fetch(`${TASKY_API_URL}/tasks/${user_id}`);
+    let data = await response.json();
+    console.log(data)
+    return data;
+  }
