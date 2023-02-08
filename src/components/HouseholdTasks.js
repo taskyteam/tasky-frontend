@@ -32,10 +32,10 @@ class MyTasks extends Component {
   render() {
     const { tasks } = this.state;
     return (
-      <div>
+      <div className="household-info">
         <h2>Household Tasks</h2>
         {tasks.map((task, i) => (
-          <div key={i}>
+          <div className="task" key={i}>
             <p>Title: {task.title}</p>
             <p>Status: {task.status}</p>
             <p>Points: {task.points}</p>

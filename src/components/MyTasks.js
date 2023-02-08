@@ -31,10 +31,10 @@ class MyTasks extends Component {
   render() {
     const { tasks, isLoading } = this.state;
     return (
-      <div>
+      <div className="household-info">
         <h2>My Tasks</h2>
         {isLoading ? <div>loading...</div> : tasks.map(task => (
-          <div key={task.id}>
+          <div className="task" key={task.id}>
             <p>Title: {task.title}</p>
             <p>Status: {task.status}</p>
             <p>Points: {task.points}</p>

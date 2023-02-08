@@ -49,21 +49,15 @@ class Home extends Component {
           <UserStats />
 
           <Link
-            to="/my-tasks"
+            to="/tasks"
             onClick={() => {
-              window.location.href = "/my-tasks";
+              window.location.href = "/tasks";
             }}
           >
-            <button className="my-tasks-btn">My tasks</button>
+            <button className="tasks-btn">Tasks</button>
           </Link>
-          <Link
-            to="/household-tasks"
-            onClick={() => {
-              window.location.href = "/household-tasks";
-            }}
-          >
-            <button className="househould-tasks-btn">Household tasks</button>
-          </Link>
+
+          
           <Link
             to="/create-task"
             onClick={() => {
