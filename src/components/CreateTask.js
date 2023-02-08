@@ -156,20 +156,28 @@ class CreateTask extends React.Component {
 
   handleNewTask = async (event) => {
     event.preventDefault();
-
     try {
-      const { title, description, assigned_to, points, household_id } = this.state;
+      const { title, description, assigned_to, points } = this.state;
+      const household_id = this.state.task.household_id;
       console.log("this state" + title, description, assigned_to, points, household_id)
+      if(!title || !description || !assigned_to || !points) {
+        this.setState({
+          isFilled: false,
+          })
+          alert("Please fill out all fields")
+          return
+      } 
       const newTask = await createTask(
         title,
         description,
-        parseInt(assigned_to),
-        points,
+        +assigned_to,
+        +points,
         household_id
       );
 
       this.setState({
         task: newTask,
+        isFilled: true,
       });
     } catch (error) {
       console.log(error);
@@ -192,11 +200,26 @@ class CreateTask extends React.Component {
   }
 
   render() {
+    const isFilled = this.state.isFilled;
+    if(isFilled) {
+      return (
+        <div>
+          <h1>Task Created</h1>
+          <Link to="/home">
+            <button type="submit">Back</button>
+          </Link>
+        </div>
+      )
+    }
+    
+    
+
+    
     return (
       <div>
         <h1>Create Task</h1>
           <label htmlFor="title">Title</label>
-          <input type="text" name="title" onChange={(event) => this.setState({ title: event.target.value })} />
+          <input type="text" name="title" onChange={(event) => this.setState({ title: event.target.value })}  />
           <label htmlFor="description">Description</label>
           <input type="text" name="description" onChange={(event) => this.setState({ description: event.target.value })} />
           <label htmlFor="assigned_to">Assign To</label>
