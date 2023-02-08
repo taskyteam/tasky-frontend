@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import CreateTask  from '../../tasky-frontend/src/components/CreateTask';
+
+import CreateTask  from './components/CreateTask';
+
 
 function App() {
   return (
