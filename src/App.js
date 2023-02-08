@@ -1,21 +1,21 @@
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import CreateTask  from '../../tasky-frontend/src/components/CreateTask';
-import MyTasks from './components/MyTasks';
+
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import CreateTask from "./components/CreateTask";
+import Home from "./components/Home";
+import Header from "./components/Header";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      {/*   <Header path="/"/> */}
-        
-          <MyTasks path="/create-task" component={MyTasks} /> 
 
-         
-
-        
+        <Header exact path="/" />
+        <Switch>
+          <Route exact path="/home" component={Home} />
+          <Route exact path="/create-task" component={CreateTask} />
+        </Switch>
       </BrowserRouter>
-
     </div>
   );
 }
