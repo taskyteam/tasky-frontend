@@ -1,6 +1,6 @@
 const TASKY_API_URL = process.env.REACT_APP_TASKY_API_URL || 'http://localhost:3333';
 
-export async function createTask(title, description, points, assigned_to, status, household_id) {
+export async function createTask(title, description, points, assigned_to, household_id) {
     const response = await fetch(`${TASKY_API_URL}/tasks`, {
       method: 'POST',
       headers: {
@@ -12,7 +12,6 @@ export async function createTask(title, description, points, assigned_to, status
         description,
         points,
         assigned_to,
-        status,
         household_id
       })
     });
