@@ -5,7 +5,8 @@ class MyTasks extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks: []
+      tasks: [],
+      isLoading: false,
     };
   }
 
