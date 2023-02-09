@@ -1,5 +1,22 @@
 const TASKY_API_URL = process.env.REACT_APP_TASKY_API_URL || 'http://localhost:3333';
 
+export async function getLoginToken(email, password) {
+  const response = await fetch(`${TASKY_API_URL}/login`,{
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email,
+      password
+    })
+  });
+  const data = await response.json()
+  console.log(data)
+  return data
+
+}
+
 export async function getCurrentUser(user_id) {
   const response = await fetch(`${TASKY_API_URL}/currentuser/${user_id}`, {
     method: 'GET',

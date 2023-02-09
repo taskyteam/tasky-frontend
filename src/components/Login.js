@@ -1,11 +1,12 @@
 import { Component } from "react"
+import { getLoginToken } from "../services/tasks";
 
 class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username:"",
+      email:"",
       password:"",
       error: null
     }
@@ -17,17 +18,47 @@ class Login extends Component {
     })
   }
 
+
+  async handleLoginAttempt() {
+    const { email, password } = this.state;
+    const { history } = this.props;
+
+    try {
+      const { token, error } = await getLoginToken(email, password);
+
+      if (error) {
+        throw new Error(error)
+      }
+
+      if(!token) {
+        throw new Error("Something went wrong. Couldn't get token")
+      }
+
+      localStorage.setItem("TASKY_TOKEN", token);
+
+      history.replace("/");
+
+
+    } catch(error) {
+      this.setState({
+        error
+      });
+      console.log(error)
+    }
+  }
+
   render() {
-    const { error, username, password } = this.state;
+    const { error, email, password } = this.state;
     return (
       <div>
         <h1>Login</h1>
         <label>
           Email:
           <input
+          id="email-field"
           type="email"
-          onChange={this.handleInputFieldChange.bind(this, "username")}
-          value={username}
+          onChange={this.handleInputFieldChange.bind(this, "email")}
+          value={email}
           />
         </label>
         <br />
@@ -41,7 +72,7 @@ class Login extends Component {
         </label>
         <div>
           <button
-          onClick={() => {return}}>Log in</button>
+          onClick={this.handleLoginAttempt.bind(this)}>Log in</button>
         </div>
         {error && (
           <div>Error: {error.message} </div>
