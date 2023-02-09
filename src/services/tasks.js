@@ -66,3 +66,22 @@ export async function createTask(title, description, points, assigned_to, househ
     return data;
 
   }
+
+  export async function updateTask(id, title, description, assigned_to, status, points){
+    const response = await fetch(`${TASKY_API_URL}/tasks/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        //'x-token': localStorage.getItem('TASKY_TOKEN')
+      },
+      body: JSON.stringify({
+        title,
+        description,
+        assigned_to,
+        status,
+        points
+      })
+    });
+    const data = await response.json();
+    return data;
+  }

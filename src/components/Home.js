@@ -50,9 +50,6 @@ class Home extends Component {
 
           <Link
             to="/tasks"
-            onClick={() => {
-              window.location.href = "/tasks";
-            }}
           >
             <button className="tasks-btn">Tasks</button>
           </Link>
@@ -60,25 +57,11 @@ class Home extends Component {
           
           <Link
             to="/create-task"
-            onClick={() => {
-              window.location.href = "/create-task";
-            }}
           >
             <button className="add-task">Add Task</button>
           </Link>
 
-          {/* {isLoading ? (
-            <div>loading...</div>
-          ) : (
-            household_tasks.map((task, i) => (
-              <div className="task" key={i}>
-                <h3>{task.title}</h3>
-                <p>{task.description}</p>
-                <p>{task.assigned_to}</p>
-                <p>{task.points} 💎</p>
-              </div>
-            ))
-          )} */}
+          
         </div>
       </div>
     );
