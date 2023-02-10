@@ -29,7 +29,7 @@ class MyTasks extends Component {
     const { isLoading } = this.state;
     const { tasks } = this.props;
     console.log({tasks})
-    if (tasks === [])
+    if (tasks === [] )
       return (
         <div className="household-info">
           <h2>My Tasks</h2>

@@ -4,6 +4,7 @@ import CreateTask from "./components/CreateTask";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
+import Login from "./components/Login";
 import Welcome from "./components/Welcome";
 
 
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route  path="/create-task" component={CreateTask} />
           <Route  path="/tasks" component={Tasks} />
+          <Route exact path ="/login" component={Login} />
           <Route  path="/welcome" component={Welcome} />
         </Switch>
       </BrowserRouter>
