@@ -3,7 +3,7 @@ import MyTasks from "./MyTasks";
 import HouseholdTasks from "./HouseholdTasks";
 import CompletedTasks from "./CompletedTasks";
 import { Switch, Route } from "react-router-dom";
-import { getTasksByHousehold } from "../services/tasks";
+import { getTasksByHousehold, updateTask } from "../services/tasks";
 
 class Tasks extends React.Component {
   constructor(props) {
@@ -11,14 +11,17 @@ class Tasks extends React.Component {
     this.state = {
       tasks: [],
       isLoading: false,
+      noTasks: false,
+      show: "myTasks",
       household_id: 1,
       currentUser: 2,
     };
   }
 
- populateTasks = async () => {
+
+  async componentDidMount() {
     this.setState({ isLoading: true });
-    const {household_id } = this.state;
+    const household_id = 1;
     try{
       this.setState({
         tasks: await getTasksByHousehold(household_id),
@@ -27,23 +30,20 @@ class Tasks extends React.Component {
     }catch(error){
       console.log(error);
     }
-    console.log("populated tasks")
+    // if(this.state.tasks.length === 0){
+    //   this.setState({
+    //     noTasks: true,
+    //   })
+    // }
   }
 
 
-  async componentDidMount() {
-    await this.populateTasks();
-    console.log("mounted")
-  }
-
- 
   render() {
     const { tasks, 
       /* isLoading, noTasks,  */
       currentUser, household_id } = this.state;
-      console.log({tasks})
-    const myTasks = tasks.filter((task) => task.assigned_to === currentUser && task.status === "open");
-    const householdTasks = tasks.filter( (task) => task.household_id === household_id && (task.status === "open" || task.status === "pending"));
+    const myTasks = tasks.filter((task) => task.user_id === currentUser || task.status === "open");
+    const householdTasks = tasks.filter( (task) => task.household_id === household_id || task.status === "open" || task.status === "pending");
     const completedTasks = tasks.filter( (task) => task.status === "completed");
     console.log({myTasks, householdTasks, completedTasks})
     return (
@@ -60,11 +60,13 @@ class Tasks extends React.Component {
             Completed Tasks
           </button>
         </div>
-        
+        {/* {this.state.show === "myTasks" && <MyTasks />}
+        {this.state.show === "householdTasks" && <HouseholdTasks />}
+        {this.state.show === "completedTasks" && <CompletedTasks />} */}
         <Switch>
-          <Route exact path={`${this.props.match.path}/`} render={routeProps => <MyTasks {...routeProps} tasks={myTasks} populateTasks={this.populateTasks} />} />
-          <Route exact path={`${this.props.match.path}/householdtasks`} render={routeProps => <HouseholdTasks {...routeProps} tasks={householdTasks} populateTasks={this.populateTasks}/>} />
-          <Route exact path={`${this.props.match.path}/completedtasks`} render={routeProps => <CompletedTasks {...routeProps} tasks={completedTasks} populateTasks={this.populateTasks}/>} />
+          <Route exact path={`${this.props.match.path}/`} render={routeProps => <MyTasks {...routeProps}/>} />
+          <Route  path={`${this.props.match.path}/householdtasks`} component={HouseholdTasks} />
+          <Route  path={`${this.props.match.path}/completedtasks`} component={CompletedTasks} />
         </Switch>
       </div>
     );

@@ -131,10 +131,7 @@ class CreateTask extends React.Component {
         </button>
         {/*  </Link> */}
         <Link
-          to="/home"
-          onClick={() => {
-            window.location.href = "/home";
-          }}
+          to="/"
         >
           <button type="submit">Back</button>
         </Link>
