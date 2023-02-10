@@ -36,7 +36,7 @@ class Login extends Component {
 
       localStorage.setItem("TASKY_TOKEN", token);
 
-      history.replace("/");
+      history.replace("/home");
 
 
     } catch(error) {
