@@ -5,6 +5,8 @@ import Home from "./components/Home";
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import Welcome from "./components/Welcome";
+import Faq from "./components/Faq";
+import Contact from './components/Contact';
 
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
           <Route exact path="/create-task" component={CreateTask} />
           <Route exact path="/tasks" component={Tasks} />
           <Route exact path="/welcome" component={Welcome} />
+          <Route exact path="/faq" component={Faq} />
+          <Route exact path="/contact" component={Contact} />
         </Switch>
       </BrowserRouter>
     </div>

@@ -52,3 +52,32 @@
 .task p {
     text-decoration: none;
 }
+
+
+/* Welcome page */
+
+.welcome-main {
+   background-color: #88BE9E;
+   padding: 100px 50px;
+   border-radius: 10px;
+   border: 1px solid rgb(52, 52, 52);
+}
+
+.welcome-title {
+   
+}
+
+.welcome-login-btn, .welcome-signin-btn {
+   padding: 10px 20px;
+   border: 1px solid rgb(52, 52, 52);
+   border-radius: 5px;
+   margin: 80px 30px;
+}
+
+.welcome-login-btn {
+    
+}
+
+.welcome-signin-btn {
+
+}
