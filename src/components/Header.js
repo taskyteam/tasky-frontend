@@ -7,7 +7,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 class Header extends React.Component{
     render(){
         return(
-            <div>
+            <div className="main-nav">
                  {[false].map((expand) => (
         <Navbar key={expand} expand={expand}>
           <h1>Logo</h1>
@@ -23,16 +23,19 @@ class Header extends React.Component{
                 <Nav>
                   <Nav.Link 
                   to="/Home"
+                  className="header-nav"
                   onClick={() => {
                     window.location.href = "/Home"; }}>
                         Home</Nav.Link>
                   <Nav.Link 
                   to="/Faq"
+                  className="header-nav"
                   onClick={() => {
                     window.location.href = "/Faq"; }}>
                         FAQ</Nav.Link>
                   <Nav.Link 
                   to="/Contact"
+                  className="header-nav"
                   onClick={() => {
                     window.location.href = "/Contact"; }}>
                         Contact</Nav.Link>

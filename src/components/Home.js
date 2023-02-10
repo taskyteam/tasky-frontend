@@ -43,8 +43,8 @@ class Home extends Component {
       //    household_tasks, isLoading
     } = this.state;
     return (
-      <div>
-        <h1>Welcome {currentUser.username}! </h1>
+      <div className="home-main">
+        <h1 className="home-title">Welcome to Tasky {currentUser.username}! </h1>
         <div className="household-info">
           <UserStats />
 
@@ -58,7 +58,7 @@ class Home extends Component {
           <Link
             to="/create-task"
           >
-            <button className="add-task">Add Task</button>
+            <button className="add-task-btn">Add Task</button>
           </Link>
 
           
