@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 
 .App{
@@ -80,4 +80,44 @@
 
 .welcome-signin-btn {
 
+}
+
+/* Home */
+.home-main {
+    position: absolute;
+    top: 150px;
+}
+
+.home-title {
+    background-color: ;
+    color: #7daf91;
+}
+
+.household-info {
+    color: #88BE9E;
+    font-weight: bolder;
+    border-radius: 3px;
+}
+
+.tasks-btn, .add-task-btn {
+    width: 230px;
+    border: 2px solid rgb(184, 184, 184);
+    border-radius: 3px;
+    padding: 10px 20px;
+    color: #709d82;
+}
+
+/* Nav */
+
+.main-nav {
+    position: absolute;
+    top: 0px;
+    background-color: #88BE9E;
+    color: white;
+    padding: 5px 20px;
+    width: 100vw;
+}
+
+.header-nav {
+    color:#88BE9E;
 }

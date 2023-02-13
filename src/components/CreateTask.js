@@ -1,4 +1,3 @@
-
 import React from "react";
 import { createTask, getUsers } from "../services/tasks";
 import { Link } from "react-router-dom";
@@ -73,13 +72,12 @@ class CreateTask extends React.Component {
       return (
         <div>
           <h1>Task Created</h1>
-          <Link to="/home">
+          <Link to="/">
             <button type="submit">Back</button>
           </Link>
         </div>
       );
     }
-
     return (
       <div>
         <h1>Create Task</h1>
@@ -119,17 +117,9 @@ class CreateTask extends React.Component {
           name="points"
           onChange={(event) => this.setState({ points: event.target.value })}
         />
-        {/* <Link
-            to="/home"
-            //legg till check om form er tomt
-            // onClick={() => {
-            // window.location.href = "/home";
-            //  }}
-          > */}
         <button type="submit" onClick={this.handleNewTask}>
           Create Task
         </button>
-        {/*  </Link> */}
         <Link
           to="/"
         >
