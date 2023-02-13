@@ -5,14 +5,15 @@ class Welcome extends Component {
   render() {
     return (
       <div>
-        <h1>Welcome to Tasky!</h1>
+        <div className="welcome-main">
+        <h1 className="welcome-title">Welcome to Tasky!</h1>
  
         <Link
           to="/login"
           onClick={() => {
             window.location.href = "/login";
           }}>
-            <button>Log in</button>
+            <button className="welcome-login-btn">Log in</button>
         </Link>
 
         <Link
@@ -20,9 +21,9 @@ class Welcome extends Component {
           onClick={() => {
             window.location.href = "/signin";
           }}>
-            <button>Sign in</button>
+            <button className="welcome-signin-btn">Sign in</button>
         </Link>
-        
+        </div>
       </div>
     );
   }

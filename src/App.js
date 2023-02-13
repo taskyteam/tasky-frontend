@@ -8,6 +8,10 @@ import Login from "./components/Login";
 import Welcome from "./components/Welcome";
 import CreateHousehold from "./components/CreateHousehold";
 import CreateAccount from "./components/CreateAccount";
+import Faq from "./components/Faq";
+import Contact from './components/Contact';
+
+
 
 function App() {
 
@@ -22,8 +26,12 @@ function App() {
           <Route exact path ="/create-account" component={CreateAccount} />
 
           <Route  path="/tasks" component={Tasks} />
+          <Route  path="/home" component={Home} />
           <Route exact path ="/login" component={Login} />
           <Route  path="/welcome" component={Welcome} />
+          <Route  path="/faq" component={Faq} />
+          <Route  path="/contact" component={Contact} />
+
         </Switch>
       </BrowserRouter>
     </div>
