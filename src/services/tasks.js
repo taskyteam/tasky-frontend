@@ -23,7 +23,7 @@ export async function getCurrentUser(user_id) {
     headers: {
       'Content-Type': 'application/json',
       //'x-token': localStorage.getItem('TASKY_TOKEN')
-    }
+    } 
   });
   const data = await response.json();
   return data;
@@ -37,12 +37,44 @@ export async function createTask(title, description, points, assigned_to, househ
         'Content-Type': 'application/json',
         //'x-token': localStorage.getItem('TASKY_TOKEN')
       },
-      body: JSON.stringify({
+      body: JSON.stringify({ 
         title,
         description,
         points,
         assigned_to,
         household_id
+      })
+    });
+    const data = await response.json();
+    return data;
+  }
+
+  export async function createHousehold(name) {
+    const response = await fetch(`${TASKY_API_URL}/households`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        //'x-token': localStorage.getItem('TASKY_TOKEN')
+      },
+      body: JSON.stringify({
+        name
+      })
+    });
+    const data = await response.json();
+    return data;
+  }
+
+  export async function createAccount(username, email, password) {
+    const response = await fetch(`${TASKY_API_URL}/users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        //'x-token': localStorage.getItem('TASKY_TOKEN')
+      },
+      body: JSON.stringify({
+        username,
+        email,
+        password
       })
     });
     const data = await response.json();
@@ -95,9 +127,29 @@ export async function createTask(title, description, points, assigned_to, househ
         title,
         description,
         assigned_to,
-        status,
+        status, 
         points
       })
+    });
+    const data = await response.json();
+    return data;
+  }
+
+  export async function updateUser({id, username, email, admin, household_id}){
+    const response = await fetch(`${TASKY_API_URL}/users/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        //'x-token': localStorage.getItem('TASKY_TOKEN')
+      },
+      body: JSON.stringify({
+        id,
+        username,
+        email,
+        admin,
+        household_id
+      })
+
     });
     const data = await response.json();
     return data;
