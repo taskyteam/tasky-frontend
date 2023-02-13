@@ -10,24 +10,25 @@ class HouseholdTasks extends Component {
   }
 
   handleUpdateStatus = async (id) => {
+    this.setState({ isLoading: true });
+    if(!id) return;
+
     const { tasks } = this.props;
     const task = tasks.find((task) => task.id === id);
-    console.log({task})
-    const updatedTask = await updateTask(id, {
-      ...task,
-      status: "completed",
-    });
-    const updatedTasks = tasks.map((task) =>
-      task.id === id ? updatedTask : task
-    );
-    this.setState({ tasks: updatedTasks });
+    task.status = "completed";
+    try {
+      await updateTask(id, task.title, task.description, task.assigned_to, task.status, task.points );
+      this.setState({ isLoading: false });
+    } catch (error) {
+      console.log(error);
+    }
+
     await this.props.populateTasks();
   };
 
   render() {
-    const { noTask } = this.state;
     const { tasks } = this.props;
-    if(noTask) return (
+    if(tasks.length === 0) return (
       <div className="household-info">
         <h2>Household Tasks</h2>
             <div>No tasks available</div>

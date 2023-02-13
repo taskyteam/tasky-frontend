@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { getUserTasks } from "../services/tasks";
+import jwtDecode from "jwt-decode";
 
 class UserStats extends Component {
   constructor(props) {
@@ -11,8 +12,10 @@ class UserStats extends Component {
 
 
   async componentDidMount() {
+    const token = localStorage.getItem("TASKY_TOKEN");
+    const payload = await jwtDecode(token);
     this.setState({
-      tasks: await getUserTasks(2)
+      tasks: await getUserTasks(payload.id)
     })
   }
 

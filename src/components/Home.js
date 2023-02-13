@@ -1,43 +1,10 @@
 import { Component } from "react";
-import { getTasksByHousehold } from "../services/tasks";
 import UserStats from "./UserStats";
 import { Link } from "react-router-dom";
 import jwtDecode from "jwt-decode";
+import { getCurrentUser } from "../services/tasks";
 
 class Home extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     currentUser: {},
-  //     household_tasks: [],
-  //     household_users: [],
-  //     currentUser_id: 2,
-  //     currentUser_household_id: 0,
-  //     isLoading: false,
-  //   };
-  // }
-
-  // async componentDidMount() {
-  //   this.setState({ isLoading: true });
-  //   try {
-  //     const currentUser = await getCurrentUser(this.state.currentUser_id);
-  //     this.setState({
-  //       currentUser: currentUser,
-  //       currentUser_household_id: currentUser.household_id,
-  //     });
-  //     const household_tasks = await getTasksByHousehold(
-  //       this.state.currentUser_household_id
-  //     );
-  //     this.setState({
-  //       household_tasks: household_tasks,
-  //       isLoading: false,
-  //     });
-  //     console.log(this.state.currentUser);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -53,29 +20,22 @@ class Home extends Component {
     if(!token) {
       this.props.history.push("/login");
     } else{
-     
-      const payload =  jwtDecode(token);
-      this.setState({ 
-        currentUser: payload
-       });
-      this.setState({ isLoading: true });
+      //token gets old info from login, needs to be updated
       
-      console.log(this.state)
-      //get household_id from payload
-      const household_id = payload.household_id;
-      try {
-        const household_tasks = await getTasksByHousehold(
-          household_id
-              );
-        console.log(household_tasks)
-        this.setState({
-          household_tasks: household_tasks,
-          isLoading: false,
-        });
-        console.log(this.state.currentUser);
-      } catch (error) {
-        console.log(error);
-      }
+      const payload =  await jwtDecode(token);
+      const { id } = payload;
+      const updatedUser = await getCurrentUser(id);
+      console.log(updatedUser)
+      
+      this.setState({
+        currentUser: {
+          ...updatedUser
+        }
+      });
+      
+      this.setState({ isLoading: true });
+      console.log(this.state.currentUser)
+
     }
   }
 
@@ -99,8 +59,6 @@ class Home extends Component {
           >
             {currentUser.admin ? <button className="add-task">Add Task</button> : null}
           </Link>
-
-          
         </div>
       </div>
     );

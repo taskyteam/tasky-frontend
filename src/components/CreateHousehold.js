@@ -1,6 +1,8 @@
 import React from "react";
-import { createHousehold, updateUser, getCurrentUser } from "../services/tasks";
-import { Link } from "react-router-dom";
+import { createHousehold, updateUser } from "../services/tasks";
+import ShortUniqueId from 'short-unique-id';
+import jwtDecode from "jwt-decode";
+
 
 class CreateHousehold extends React.Component {
   constructor(props) {
@@ -8,6 +10,15 @@ class CreateHousehold extends React.Component {
     this.state = {
       household: {
         title: "",
+        housekey: "",
+      },
+      currentUser: {
+        id: 0,
+        username: "",
+        email: "",
+        admin: false,
+        household_id: 0,
+
       },
       isFilled: false,
     };
@@ -17,6 +28,10 @@ class CreateHousehold extends React.Component {
     event.preventDefault();
     try {
       const { title } = this.state;
+      const housekey = new ShortUniqueId().randomUUID(6);
+      const token = localStorage.getItem("TASKY_TOKEN");
+      const payload =  await jwtDecode(token);
+     
       console.log("this state" + title);
       if (!title) {
         this.setState({
@@ -25,43 +40,39 @@ class CreateHousehold extends React.Component {
         alert("Please fill out all fields");
         return;
       }
-      const currentUser = await getCurrentUser(2)
-      const { id, username, email, } = currentUser
-      console.log({currentUser})
-      const newHousehold = await createHousehold(title);
+
+
+      const newHousehold = await createHousehold(title, housekey);
       console.log({newHousehold})
-      this.setState({
+      console.log(newHousehold[0].id)
+      console.log("household id")
+      const newState = ({
+        currentUser: {
+            ...payload,
+            admin: true,
+            household_id: newHousehold[0].id,
+        },
         household: newHousehold,
         isFilled: true,
-      });
-      const update = await updateUser({ 
-        id,
-        username,
-        email,
-        admin: true,
-        household_id: newHousehold[0].id });
+      })
+      const { id, username, email, admin, household_id } = newState.currentUser;
+
+      const update = await updateUser(id, username, email, admin, household_id); 
       
+      this.setState(newState);
       console.log({update})
+      console.log("updated user")
     } catch (error) {
       console.log(error);
     }
   };
 
-  async componentDidMount() {
-    
-  }
 
   render() {
     const isFilled = this.state.isFilled;
+    const { history } = this.props;
     if (isFilled) {
-      return (
-        <div>
-          <h1>Household Created</h1>
-          <Link to="/">
-            <button type="submit">Back</button>
-          </Link>
-        </div>
-      );
+      history.replace("/")
     }
     return (
       <div>

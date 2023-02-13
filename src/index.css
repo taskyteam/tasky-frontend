@@ -82,7 +82,7 @@
 
 }
 
-/* Home */
+ 
 .home-main {
     position: absolute;
     top: 150px;
@@ -105,11 +105,11 @@
     border-radius: 3px;
     padding: 10px 20px;
     color: #709d82;
-}
+} 
 
 /* Nav */
 
-.main-nav {
+ .main-nav {
     position: absolute;
     top: 0px;
     background-color: #88BE9E;
@@ -120,4 +120,4 @@
 
 .header-nav {
     color:#88BE9E;
-}
+} 

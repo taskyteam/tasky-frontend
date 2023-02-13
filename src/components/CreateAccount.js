@@ -1,6 +1,6 @@
 import { Component } from "react"
 import { 
- // getLoginToken,
+   getLoginToken,
    createAccount } from "../services/tasks";
 
 class CreateAccount extends Component {
@@ -11,6 +11,7 @@ class CreateAccount extends Component {
       email:"",
       password:"",
       username:"",
+      passwordretype:"",
       error: null
     }
   }
@@ -23,76 +24,75 @@ class CreateAccount extends Component {
 
   async handleCreateUser() {
         localStorage.removeItem("TASKY_TOKEN")
-    const {username, email, password  } = this.state;
-
+    const { username, email, password, passwordretype } = this.state;
+    const { history } = this.props;
     try {
+      if (password !== passwordretype) {
+        throw new Error("Passwords do not match")
+      }
+
       const newAccount = await createAccount(username, email, password);
       console.log({newAccount})
+      const { token, error } = await getLoginToken(email, password);
+      if (error) {
+        throw new Error(error)
+      }
+
+      if(!token) {
+        throw new Error("Something went wrong. Couldn't get token")
+      }
+
+      localStorage.setItem("TASKY_TOKEN", token);
+      history.replace("/create-or-join");  
+
+      
     } catch(error) {
       this.setState({
         error
       });
       console.log(error)
     }
+
   }
 
 
-  // async handleLoginAttempt() {
-  //   const { email, password } = this.state;
-  //   const { history } = this.props;
-
-  //   try {
-  //     const { token, error } = await getLoginToken(email, password);
-
-  //     if (error) {
-  //       throw new Error(error)
-  //     }
-
-  //     if(!token) {
-  //       throw new Error("Something went wrong. Couldn't get token")
-  //     }
-
-  //     localStorage.setItem("TASKY_TOKEN", token);
-
-  //     history.replace("/");
-
-
-  //   } catch(error) {
-  //     this.setState({
-  //       error
-  //     });
-  //     console.log(error)
-  //   }
-  // }
+  
 
   render() {
-    const { error, email, password, username } = this.state;
+    const { error, email, password, username, passwordretype } = this.state;
     return (
       <div>
-        <h1>Login</h1>
+        <h1>Create account</h1>
         <label>
-          Email:
           <input
           id="email-field"
           type="email"
+          placeholder="Enter your email"
           onChange={this.handleInputFieldChange.bind(this, "email")}
           value={email}
           />
         </label>
-        <br />
         <label>
-          Password:
           <input
           type="password"
+          placeholder="Enter your password"
           onChange={this.handleInputFieldChange.bind(this, "password")}
           value={password}
           />
         </label>
         <label>
-          Username:
+          <input
+          type="password"
+          placeholder="Retype your password"
+          onChange={this.handleInputFieldChange.bind(this, "passwordretype")}
+          value={passwordretype}
+          />
+        </label>
+        <label>
           <input
           id="username-field"
           type="text"
+          placeholder="Enter your username"
           onChange={this.handleInputFieldChange.bind(this, "username")}
           value={username}
           />
@@ -102,7 +102,7 @@ class CreateAccount extends Component {
           onClick={this.handleCreateUser.bind(this)}>Log in</button>
         </div>
         {error && (
-          <div>Error: {error.message} </div>
+          <div>{error.message} </div>
         )}
       </div>
       

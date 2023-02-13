@@ -49,7 +49,7 @@ export async function createTask(title, description, points, assigned_to, househ
     return data;
   }
 
-  export async function createHousehold(name) {
+  export async function createHousehold(name, housekey) {
     const response = await fetch(`${TASKY_API_URL}/households`, {
       method: 'POST',
       headers: {
@@ -57,6 +57,7 @@ export async function createTask(title, description, points, assigned_to, househ
         //'x-token': localStorage.getItem('TASKY_TOKEN')
       },
       body: JSON.stringify({
+        housekey,
         name
       })
     });
@@ -116,6 +117,19 @@ export async function createTask(title, description, points, assigned_to, househ
 
   }
 
+  export async function getHouseholdById(housekey){
+    const response = await fetch(`${TASKY_API_URL}/households/${housekey}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        //'x-token': localStorage.getItem('TASKY_TOKEN')
+      }
+    });
+    const data = await response.json();
+    return data;
+  }
+
+
   export async function updateTask(id, title, description, assigned_to, status, points){
     const response = await fetch(`${TASKY_API_URL}/tasks/${id}`, {
       method: 'PUT',
@@ -124,6 +138,7 @@ export async function createTask(title, description, points, assigned_to, househ
         //'x-token': localStorage.getItem('TASKY_TOKEN')
       },
       body: JSON.stringify({
+        id,
         title,
         description,
         assigned_to,
@@ -135,7 +150,7 @@ export async function createTask(title, description, points, assigned_to, househ
     return data;
   }
 
-  export async function updateUser({id, username, email, admin, household_id}){
+  export async function updateUser(id, username, email, admin, household_id){
     const response = await fetch(`${TASKY_API_URL}/users/${id}`, {
       method: 'PUT',
       headers: {
@@ -153,4 +168,5 @@ export async function createTask(title, description, points, assigned_to, househ
     });
     const data = await response.json();
     return data;
+
   }

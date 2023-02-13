@@ -10,16 +10,21 @@ class MyTasks extends Component {
   }
 
 
+
+
   handleUpdateStatus = async (id) => {
-    console.log(` id is ${id} `)
+    if(!id) return;
+    this.setState({ isLoading: true });
     const { tasks } = this.props;
     const task = tasks.find((task) => task.id === id);
-    console.log({task})
-    const updatedTask = await updateTask(id, {
-      ...task,
-      status: "pending",
-    });
-    console.log({updatedTask})
+    task.status = "pending";
+    try {
+      await updateTask(id, task.title, task.description, task.assigned_to, task.status, task.points );
+      this.setState({ isLoading: false });
+    } catch (error) {
+      console.log(error);
+    }
+
     await this.props.populateTasks();
   };
 
@@ -28,9 +33,10 @@ class MyTasks extends Component {
   render() {
     const { isLoading } = this.state;
     const { tasks } = this.props;
+    console.log({tasks})
     console.log("tasks")
     console.log({tasks})
-    if (!tasks)
+    if (tasks.length === 0)
       return (
         <div className="household-info">
           <h2>My Tasks</h2>
