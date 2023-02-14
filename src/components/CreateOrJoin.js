@@ -62,7 +62,7 @@ class CreateOrJoin extends React.Component{
 
     render(){
         return(
-            <div>
+            <div className="pageContainer">
                 <div className="create-household">
                     <Link to="/create-household">
                         <img src="https://i.imgur.com/1ZQ3Z0M.png" alt="logo" className="logo"/>

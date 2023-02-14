@@ -30,7 +30,7 @@ export async function getCurrentUser(user_id) {
 }
 
 
-export async function createTask(title, description, points, assigned_to, household_id) {
+export async function createTask(title, description, points, assigned_to, household_id, username) {
     const response = await fetch(`${TASKY_API_URL}/tasks`, {
       method: 'POST',
       headers: {
@@ -42,7 +42,8 @@ export async function createTask(title, description, points, assigned_to, househ
         description,
         points,
         assigned_to,
-        household_id
+        household_id,
+        username
       })
     });
     const data = await response.json();
@@ -118,7 +119,7 @@ export async function createTask(title, description, points, assigned_to, househ
   }
 
   export async function getHouseholdById(housekey){
-    const response = await fetch(`${TASKY_API_URL}/households/${housekey}`, {
+    const response = await fetch(`${TASKY_API_URL}/households/serial/${housekey}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -128,7 +129,18 @@ export async function createTask(title, description, points, assigned_to, househ
     const data = await response.json();
     return data;
   }
-
+  
+  export async function getAllUsersInHousehold(household_id){
+    const response = await fetch(`${TASKY_API_URL}/users/households/${household_id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        //'x-token': localStorage.getItem('TASKY_TOKEN')
+      }
+    });
+    const data = await response.json();
+    return data;
+  }
 
   export async function updateTask(id, title, description, assigned_to, status, points){
     const response = await fetch(`${TASKY_API_URL}/tasks/${id}`, {
@@ -169,4 +181,17 @@ export async function createTask(title, description, points, assigned_to, househ
     const data = await response.json();
     return data;
 
+  }
+
+
+  export async function getCurrentHousehold(household_id){
+    const response = await fetch(`${TASKY_API_URL}/households/${household_id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        //'x-token': localStorage.getItem('TASKY_TOKEN')
+      }
+    });
+    const data = await response.json();
+    return data;
   }

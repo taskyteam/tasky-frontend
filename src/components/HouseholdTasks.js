@@ -15,6 +15,8 @@ class HouseholdTasks extends Component {
 
     const { tasks } = this.props;
     const task = tasks.find((task) => task.id === id);
+    //sort by status, "pending first, then open, then completed"
+    
     task.status = "completed";
     try {
       await updateTask(id, task.title, task.description, task.assigned_to, task.status, task.points );
@@ -22,12 +24,19 @@ class HouseholdTasks extends Component {
     } catch (error) {
       console.log(error);
     }
-
     await this.props.populateTasks();
   };
 
   render() {
     const { tasks } = this.props;
+    tasks.sort((a, b) => {
+      if (a.status === "pending") return -1;
+      if (a.status === "open" && b.status === "completed") return -1;
+      if (a.status === "completed" && b.status === "open") return 1;
+      if (a.status === "completed" && b.status === "pending") return 1;
+      return 0;
+    });
+    
     if(tasks.length === 0) return (
       <div className="household-info">
         <h2>Household Tasks</h2>
@@ -43,8 +52,8 @@ class HouseholdTasks extends Component {
             <p>Status: {task.status}</p>
             {task.points === 0 ? null : <p>Points: {task.points}</p>}
             {task.description === "" ? null : <p>Description: {task.description}</p>}
-            <p>Assigned to: {task.assigned_to}</p>
-            {task.status === "open" ? null : <button onClick={() => this.handleUpdateStatus(task.id)}>Approve</button>}          </div>
+            {/* <p>Assigned to: {task.username}  </p> */}
+            {task.status === "open" ? null : <button className="btn-primary" onClick={() => this.handleUpdateStatus(task.id)}>Approve</button>}          </div>
         ))}
       </div>
     );

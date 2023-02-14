@@ -2,13 +2,14 @@ import { Component } from "react";
 import UserStats from "./UserStats";
 import { Link } from "react-router-dom";
 import jwtDecode from "jwt-decode";
-import { getCurrentUser } from "../services/tasks";
+import { getCurrentUser, getCurrentHousehold } from "../services/tasks";
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       currentUser: {},
+      currentHousehold: {},
       household_tasks: [],
       household_users: [],
       isLoading: false,
@@ -16,6 +17,7 @@ class Home extends Component {
   }
 
   async componentDidMount() {
+    this.setState({ isLoading: true });
     const token = localStorage.getItem("TASKY_TOKEN");
     if(!token) {
       this.props.history.push("/login");
@@ -25,40 +27,50 @@ class Home extends Component {
       const payload =  await jwtDecode(token);
       const { id } = payload;
       const updatedUser = await getCurrentUser(id);
-      console.log(updatedUser)
-      
+      const { household_id } = updatedUser;
+      const updatedHousehold = await getCurrentHousehold(household_id);
+
       this.setState({
         currentUser: {
           ...updatedUser
-        }
-      });
-      
-      this.setState({ isLoading: true });
-      console.log(this.state.currentUser)
+        },
+        currentHousehold: {
+          ...updatedHousehold
+        },
+        isLoading: false,
+      })
+      console.log(household_id)
+      console.log("household id")
 
+      console.log(this.state.currentHousehold)
+      console.log(this.state.currentUser)
     }
   }
 
   render() {
     const {
       currentUser,
+      currentHousehold,
       //    household_tasks, isLoading
     } = this.state;
     return (
-      <div className="home-main">
-        <h1 className="home-title">Welcome to Tasky {currentUser.username}! </h1>
-        <div className="household-info">
-          <UserStats />
-          <Link
-            to="/tasks"
-          >
-            <button className="tasks-btn">Tasks</button>
-          </Link>
-          <Link
-            to="/create-task"
-          >
-            {currentUser.admin ? <button className="add-task">Add Task</button> : null}
-          </Link>
+      <div>
+        <h1 className="home-title">Welcome {currentUser.username}! </h1>
+        <div className="home-main">
+          <div className="household-info">
+            <UserStats />
+            <div className="household-name">{currentHousehold.name}</div>
+            {!currentUser.Admin ? null : <div className="household-key">Household Key:{currentHousehold.housekey}</div>}          <Link
+              to="/tasks"
+            >
+              <button className="btn-primary">Tasks</button>
+            </Link>
+            <Link
+              to="/create-task"
+            >
+              {currentUser.admin ? <button className="btn-primary">Add Task</button> : null}
+            </Link>
+          </div>
         </div>
       </div>
     );

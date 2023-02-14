@@ -75,18 +75,19 @@ class CreateHousehold extends React.Component {
       history.replace("/")
     }
     return (
-      <div>
-        <h1>Create Task</h1>
-        <label htmlFor="title">Household Name</label>
-        <input
-          type="text"
-          name="title"
-
-          onChange={(event) => this.setState({ title: event.target.value })}
-        />
-        <button type="submit" onClick={this.handleNewHousehold}>
-          Create Household
-        </button>
+      <div className="pageContainer">
+        <div className="inputBox">
+          <h1>Create Task</h1>
+          <label htmlFor="title">Household Name</label>
+          <input
+            type="text"
+            name="title"
+            onChange={(event) => this.setState({ title: event.target.value })}
+          />
+          <button type="submit" onClick={this.handleNewHousehold}>
+            Create Household
+          </button>
+        </div>
       </div>
     );
   }

@@ -13,7 +13,6 @@ class MyTasks extends Component {
 
 
   handleUpdateStatus = async (id) => {
-    if(!id) return;
     this.setState({ isLoading: true });
     const { tasks } = this.props;
     const task = tasks.find((task) => task.id === id);
@@ -44,19 +43,20 @@ class MyTasks extends Component {
         </div>
       );
     return (
-      <div className="household-info">
-        <h2>My Tasks</h2>
-        {isLoading ? <div>loading...</div> : tasks.map((task, i) => (
-            <div className="task" key={i} id={task.id}>
-              <p>Title: {task.title}</p>
-              <p>Status: {task.status}</p>
-              {task.points === 0 ? null : <p>Points: {task.points}</p>}
-              {task.description === "" ? null : <p>Description: {task.description}</p>}
-              <button onClick={() => this.handleUpdateStatus(task.id)}>Approve</button>
-
-            </div>
-          ))
-      }
+      <div className="pageContainer">
+        <div className="household-info">
+          <h2>My Tasks</h2>
+          {isLoading ? <div>loading...</div> : tasks.map((task, i) => (
+              <div className="task" key={i} id={task.id}>
+                <p>Title: {task.title}</p>
+                <p>Status: {task.status}</p>
+                {task.points === 0 ? null : <p>Points: {task.points}</p>}
+                {task.description === "" ? null : <p>Description: {task.description}</p>}
+                <button className="btn-primary" onClick={() => this.handleUpdateStatus(task.id)}>Approve</button>
+              </div>
+            ))
+        }
+        </div>
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React from "react";
-import { createTask, getUsers } from "../services/tasks";
+import { createTask, getCurrentHousehold, getCurrentUser, getUsers } from "../services/tasks";
 import { Link } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 
 class CreateTask extends React.Component {
   constructor(props) {
@@ -11,8 +12,11 @@ class CreateTask extends React.Component {
         description: "",
         assigned_to: 0,
         points: "",
-        household_id: 2,
+        household_id: 0,
+        username: "",
       },
+      currentHousehold: {},
+      currentUser: {},
       users: [],
       isFilled: false,
     };
@@ -20,17 +24,14 @@ class CreateTask extends React.Component {
 
   handleNewTask = async (event) => {
     event.preventDefault();
+    
     try {
       const { title, description, assigned_to, points } = this.state;
-      const household_id = this.state.task.household_id;
-      console.log(
-        "this state" + title,
-        description,
-        assigned_to,
-        points,
-        household_id
-      );
-      if (!title || !description || !assigned_to || !points) {
+      const username = this.state.users.find((user) => user.id === +assigned_to);
+      console.log(username)
+      console.log("username")
+      const household_id = this.state.currentHousehold.id;
+      if (!title || !assigned_to || !points) {
         this.setState({
           isFilled: false,
         });
@@ -42,7 +43,8 @@ class CreateTask extends React.Component {
         description,
         +assigned_to,
         +points,
-        household_id
+        household_id,
+        username
       );
 
       this.setState({
@@ -55,12 +57,26 @@ class CreateTask extends React.Component {
   };
 
   async componentDidMount() {
+    const token = localStorage.getItem("TASKY_TOKEN");
+    const payload = await jwtDecode(token);
+    const updatedUser = await getCurrentUser(payload.id)
+    const household_id = updatedUser.household_id;
+    const updatedHousehold = await getCurrentHousehold(household_id);
+      this.setState({
+        currentHousehold: {
+          ...updatedHousehold
+        },
+        currentUser: {
+          ...updatedUser
+        }
+      })
     try {
-      const users = await getUsers(2);
+      const users = await getUsers(household_id);
       this.setState({
         users: users,
       });
       console.log(this.state.users);
+      console.log("users")
     } catch (error) {
       console.log(error);
     }
@@ -70,7 +86,7 @@ class CreateTask extends React.Component {
     const isFilled = this.state.isFilled;
     if (isFilled) {
       return (
-        <div>
+        <div className="pageContainer">
           <h1>Task Created</h1>
           <Link to="/">
             <button type="submit">Back</button>
@@ -79,53 +95,55 @@ class CreateTask extends React.Component {
       );
     }
     return (
-      <div>
-        <h1>Create Task</h1>
-        <label htmlFor="title">Title</label>
-        <input
-          type="text"
-          name="title"
-          onChange={(event) => this.setState({ title: event.target.value })}
-        />
-        <label htmlFor="description">Description</label>
-        <input
-          type="text"
-          name="description"
-          onChange={(event) =>
-            this.setState({ description: event.target.value })
-          }
-        />
-        <label htmlFor="assigned_to">Assign To</label>
-        <select
-          name="assigned_to"
-          onChange={(event) =>
-            this.setState({ assigned_to: event.currentTarget.value })
-          }
-        >
-          <option value="0">Select user</option>
-          {this.state.users.map((user, i) => {
-            return (
-              <option key={i} value={user.id}>
-                {user.username}
-              </option>
-            );
-          })}
-        </select>
-        <label htmlFor="points">Points</label>
-        <input
-          type="number"
-          name="points"
-          onChange={(event) => this.setState({ points: event.target.value })}
-        />
-        <button type="submit" onClick={this.handleNewTask}>
-          Create Task
-        </button>
-        <Link
-          to="/"
-        >
-          <button type="submit">Back</button>
-        </Link>
-      </div>
+        <div className="pageContainer">
+          <h1>Create Task</h1>
+          <div className="inputBox">
+            <label htmlFor="title">Title</label>
+            <input
+              type="text"
+              name="title"
+              onChange={(event) => this.setState({ title: event.target.value })}
+            />
+            <label htmlFor="description">Description</label>
+            <textarea className="createDescription"
+              type="text"
+              name="description"
+              onChange={(event) =>
+                this.setState({ description: event.target.value })
+              }
+            />
+            <label htmlFor="assigned_to">Assign To</label>
+            <select
+              name="assigned_to"
+              onChange={(event) =>
+                this.setState({ assigned_to: event.currentTarget.value })
+              }
+            >
+              <option value="0">Select user</option>
+              {this.state.users.map((user, i) => {
+                return (
+                  <option key={i} value={user.id}>
+                    {user.username}
+                  </option>
+                );
+              })}
+            </select>
+            <label htmlFor="points">Points</label>
+            <input
+              type="number"
+              name="points"
+              onChange={(event) => this.setState({ points: event.target.value })}
+            />
+            <button className="btn-primary" type="submit" onClick={this.handleNewTask}>
+              Create Task
+            </button>
+            <Link
+              to="/"
+            >
+              <button className="btn-primary" type="submit">Back</button>
+            </Link>
+                  </div>
+          </div>
     );
   }
 }

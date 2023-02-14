@@ -61,51 +61,55 @@ class CreateAccount extends Component {
   render() {
     const { error, email, password, username, passwordretype } = this.state;
     return (
-      <div>
+      <div className="pageContainer">
         <h1>Create account</h1>
-        <label>
-          <input
-          id="email-field"
-          type="email"
-          placeholder="Enter your email"
-          onChange={this.handleInputFieldChange.bind(this, "email")}
-          value={email}
-          />
-        </label>
-        <label>
-          <input
-          type="password"
-          placeholder="Enter your password"
-          onChange={this.handleInputFieldChange.bind(this, "password")}
-          value={password}
-          />
-        </label>
-        <label>
-          <input
-          type="password"
-          placeholder="Retype your password"
-          onChange={this.handleInputFieldChange.bind(this, "passwordretype")}
-          value={passwordretype}
-          />
-        </label>
-        <label>
-          <input
-          id="username-field"
-          type="text"
-          placeholder="Enter your username"
-          onChange={this.handleInputFieldChange.bind(this, "username")}
-          value={username}
-          />
-        </label>
+        <div className="inputBox">
+          <label>
+            <input
+            id="email-field"
+            type="email"
+            placeholder="Enter your email"
+            onChange={this.handleInputFieldChange.bind(this, "email")}
+            value={email}
+            autoComplete="off"
+            />
+          </label>
+          <label>
+            <input
+            type="password"
+            placeholder="Enter your password"
+            onChange={this.handleInputFieldChange.bind(this, "password")}
+            value={password}
+            />
+          </label>
+          <label>
+            <input
+            type="password"
+            placeholder="Retype your password"
+            onChange={this.handleInputFieldChange.bind(this, "passwordretype")}
+            value={passwordretype}
+            />
+          </label>
+          <label>
+            <input
+            id="username-field"
+            type="text"
+            placeholder="Enter your username"
+            onChange={this.handleInputFieldChange.bind(this, "username")}
+            value={username}
+            />
+          </label>
+        
         <div>
-          <button
-          onClick={this.handleCreateUser.bind(this)}>Log in</button>
+          <button className="btn-primary"
+          onClick={this.handleCreateUser.bind(this)}>Create Account</button>
         </div>
+
         {error && (
           <div>{error.message} </div>
         )}
       </div>
-      
+      </div>
     );
   }
 

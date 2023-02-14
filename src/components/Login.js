@@ -47,36 +47,43 @@ class Login extends Component {
     }
   }
 
+  async componentDidMount(){
+    localStorage.removeItem("TASKY_TOKEN")
+  }
+
   render() {
     const { error, email, password } = this.state;
     return (
-      <div>
+      <div className="pageContainer">
         <h1>Login</h1>
-        <label>
-          Email:
-          <input
-          id="email-field"
-          type="email"
-          onChange={this.handleInputFieldChange.bind(this, "email")}
-          value={email}
-          />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input
-          type="password"
-          onChange={this.handleInputFieldChange.bind(this, "password")}
-          value={password}
-          />
-        </label>
-        <div>
-          <button
-          onClick={this.handleLoginAttempt.bind(this)}>Log in</button>
+        <div className="inputBox">
+          <label>
+            Email:
+            <input
+            id="email-field"
+            type="email"
+            onChange={this.handleInputFieldChange.bind(this, "email")}
+            value={email}
+            autoComplete="off"
+            />
+          </label>
+          <br />
+          <label>
+            Password:
+            <input
+            type="password"
+            onChange={this.handleInputFieldChange.bind(this, "password")}
+            value={password}
+            />
+          </label>
+          <div>
+            <button className="btn-primary"
+            onClick={this.handleLoginAttempt.bind(this)}>Log in</button>
+          </div>
+          {error && (
+            <div>Error: {error.message} </div>
+          )}
         </div>
-        {error && (
-          <div>Error: {error.message} </div>
-        )}
       </div>
       
     );
