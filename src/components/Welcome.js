@@ -13,7 +13,7 @@ class Welcome extends Component {
           onClick={() => {
             window.location.href = "/login";
           }}>
-            <button className="btn-primary">Log in</button>
+            <button className="btn-primary login-btn">Log in</button>
         </Link>
         <Link
           to="/signin"
