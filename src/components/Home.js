@@ -3,6 +3,7 @@ import UserStats from "./UserStats";
 import { Link } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import { getCurrentUser, getCurrentHousehold } from "../services/tasks";
+import logo from "../images/logo.png";
 
 class Home extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class Home extends Component {
       household_tasks: [],
       household_users: [],
       isLoading: false,
+      goal: {},
     };
   }
 
@@ -56,14 +58,14 @@ class Home extends Component {
     } = this.state;
     console.log(currentUser)
     console.log("current user in Home")
-    if(isLoading) return <div className="household-info"> <p>Loading...</p></div>
+    if(isLoading) return <div className="household-info"> <img className="loadingLogo" src={logo} alt="loading" /></div>
     return (
       <div>
         <h1 className="home-title">Welcome {currentUser.username}! </h1>
-        <div className="home-main">
+        <div className="home-main" style={{transition: "3s ease-in all"}}>
           
           <div className="household-info">
-            <UserStats />
+            <UserStats isLoading={isLoading} />
             <div className="household-name">{currentHousehold.name}</div>
             {currentUser.admin ? <div className="household-key">House key: {currentHousehold.housekey}</div> : null}          
             <Link
@@ -75,6 +77,11 @@ class Home extends Component {
               to="/create-task"
             >
               {currentUser.admin ? <button className="btn-primary">Add Task</button> : null}
+            </Link>
+            <Link
+              to="/create-goal"
+            >
+              {currentUser.admin ? <button className="btn-primary">Add goal</button> : null}
             </Link>
           </div>
         </div>

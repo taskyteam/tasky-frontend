@@ -1,0 +1,205 @@
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes loadingLogoAnimationOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+body {
+  animation: fadeInAnimation ease-in 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.main-margin {
+  margin-top: 120px;
+}
+
+.form {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f1f1f1;
+}
+
+.statsContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.statsContainer .goalStats {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  text-align: right;
+}
+.statsContainer .goalStats .circleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.statsContainer .goalStats .circleContainer .percentage {
+  position: absolute;
+  font-size: 1.5rem;
+  margin: 0;
+}
+.statsContainer .goalStats .circleContainer .circle-bg {
+  stroke: #fff;
+  fill: none;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+}
+.statsContainer .goalStats .circleContainer .circular-chart {
+  display: block;
+  margin: 10px auto;
+  max-width: 80%;
+  height: 200px;
+  position: relative;
+}
+
+.circle {
+  stroke: #4CC790;
+  fill: none;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  animation: progress 1s ease-out forwards;
+}
+
+.household-info {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: start;
+  background-color: #fff;
+  gap: 1rem;
+}
+
+.task {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: start;
+  background-color: #fff;
+  padding: 1rem;
+}
+
+.task p {
+  text-decoration: none;
+}
+
+/* Primary */
+.btn-primary {
+  background-color: #88be9e;
+  border: none;
+}
+
+.primary-main {
+  border: 2px solid #CCf3df;
+  border-radius: 40%;
+  padding: 40px;
+  text-align: center;
+  width: 400px;
+}
+
+/* Login */
+.primary-title {
+  margin-bottom: 30px;
+}
+
+.primary-text {
+  margin: 10px;
+  text-align: center;
+}
+
+/* Welcome page */
+.welcome-main {
+  margin-top: 100px;
+  width: 400px;
+  padding: 100px 50px;
+  border-radius: 10px;
+  border: 2px solid #CCf3df;
+}
+
+.welcome-title {
+  margin-bottom: 50px;
+}
+
+.welcome-login-btn,
+.welcome-signin-btn {
+  padding: 20px 30px;
+  border: 1px solid #88be9e;
+  background-color: #CCf3df;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+.home-main {
+  position: absolute;
+  top: 150px;
+}
+
+.household-info {
+  font-weight: bolder;
+  border-radius: 3px;
+}
+
+.tasks-btn,
+.add-task-btn {
+  width: 230px;
+  border: 2px solid rgb(184, 184, 184);
+  border-radius: 3px;
+  padding: 10px 20px;
+  color: #709d82;
+}
+
+/* Nav */
+.main-nav {
+  position: absolute;
+  top: 0px;
+  color: white;
+  padding: 5px 20px;
+  width: 100vw;
+  height: 120px;
+}
+.main-nav .logoHeader {
+  width: 50px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}/*# sourceMappingURL=input.css.map */

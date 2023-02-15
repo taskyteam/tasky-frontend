@@ -15,7 +15,6 @@ class Welcome extends Component {
           }}>
             <button className="welcome-login-btn">Log in</button>
         </Link>
-
         <Link
           to="/signin"
           onClick={() => {

@@ -3,23 +3,53 @@ $color2: #b2dfb6;
 $color3: #88be9e;
 $color4: #6B9EA4;
 
-*{
+//animations
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes loadingLogoAnimationOpacity {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes progress {
+    0% {
+        stroke-dasharray: 0 100;
+    }
+}
+
+//Styles
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-.App{
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+body {
+    animation: fadeInAnimation ease-in 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
 }
 
-.form{
+.main-margin{
+    margin-top: 120px;
+}
+
+
+.form {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -27,10 +57,73 @@ $color4: #6B9EA4;
     justify-content: center;
     align-items: center;
     background-color: #f1f1f1;
+}
+
+//Stats page
+.statsContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+
+    .goalStats {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        text-align: right;
+
+        .circleContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .percentage {
+                position: absolute;
+                font-size: 1.5rem;
+                margin: 0;
+            }
+            .circle-bg {
+                stroke: #fff;
+                fill: none;
+                stroke-width: 2.8;
+                stroke-linecap: round;
+            }
+
+            .circular-chart {
+                display: block;
+                margin: 10px auto;
+                max-width: 80%;
+                height: 200px;
+                position: relative;
+            }
+        }
+        
+    }
 
 }
 
-.household-info{
+
+
+// Stats circles
+
+
+.circle {
+    stroke: #4CC790;
+    fill: none;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    animation: progress 1s ease-out forwards;
+}
+
+
+
+
+.household-info {
     width: 100%;
     height: 100%;
     display: flex;
@@ -42,7 +135,7 @@ $color4: #6B9EA4;
     gap: 1rem;
 }
 
-.task{
+.task {
     width: 100%;
     height: 100%;
     display: flex;
@@ -60,12 +153,10 @@ $color4: #6B9EA4;
 
 /* Primary */
 .btn-primary {
-    margin-top: 20px;
-    padding: 10px 30px;
     background-color: $color3;
     border: none;
-    border-radius: 5px;
 }
+
 .primary-main {
     border: 2px solid $color1;
     border-radius: 40%;
@@ -79,6 +170,7 @@ $color4: #6B9EA4;
 .primary-title {
     margin-bottom: 30px;
 }
+
 .primary-text {
     margin: 10px;
     text-align: center;
@@ -89,32 +181,30 @@ $color4: #6B9EA4;
 .welcome-main {
     margin-top: 100px;
     width: 400px;
-   padding: 100px 50px;
-   border-radius: 10px;
-   border: 2px solid $color1;
+    padding: 100px 50px;
+    border-radius: 10px;
+    border: 2px solid $color1;
 }
+
 .welcome-title {
-   margin-bottom: 50px;
+    margin-bottom: 50px;
 }
 
-.welcome-login-btn, .welcome-signin-btn {
-
-   padding: 20px 30px;
-   border: 1px solid $color3;
-   background-color: $color1;
-   border-radius: 5px;
-   margin: 20px;
-}
-
-.welcome-login-btn {
-    
-}
-
+.welcome-login-btn,
 .welcome-signin-btn {
 
+    padding: 20px 30px;
+    border: 1px solid $color3;
+    background-color: $color1;
+    border-radius: 5px;
+    margin: 20px;
 }
 
- 
+.welcome-login-btn {}
+
+.welcome-signin-btn {}
+
+
 .home-main {
     position: absolute;
     top: 150px;
@@ -125,26 +215,31 @@ $color4: #6B9EA4;
     border-radius: 3px;
 }
 
-.tasks-btn, .add-task-btn {
+.tasks-btn,
+.add-task-btn {
     width: 230px;
     border: 2px solid rgb(184, 184, 184);
     border-radius: 3px;
     padding: 10px 20px;
     color: #709d82;
-} 
+}
 
 /* Nav */
 
- .main-nav {
+.main-nav {
     position: absolute;
     top: 0px;
-    background-color: $color3;
     color: white;
     padding: 5px 20px;
     width: 100vw;
-    height: 70px;
+    height: 120px;
+    .logoHeader{
+        width: 50px;
+        height: 100%;
+
+        margin: 0;
+        padding: 0;
+    }
 }
 
-.header-nav {
-  
-} 
+.header-nav {}

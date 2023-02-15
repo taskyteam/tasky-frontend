@@ -50,6 +50,26 @@ export async function createTask(title, description, points, assigned_to, househ
     return data;
   }
 
+  export async function createGoal(title, assigned_to, points, household_id) {
+    const response = await fetch(`${TASKY_API_URL}/goals`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        //'x-token': localStorage.getItem('TASKY_TOKEN')
+      },
+      body: JSON.stringify({ 
+        title,
+        points,
+        assigned_to,
+        household_id,
+      })
+    });
+    const data = await response.json();
+    return data;
+  }
+
+  
+
   export async function createHousehold(name, housekey) {
     const response = await fetch(`${TASKY_API_URL}/households`, {
       method: 'POST',
@@ -87,6 +107,13 @@ export async function createTask(title, description, points, assigned_to, househ
 
   export async function getUserTasks(user_id) {
     let response = await fetch(`${TASKY_API_URL}/tasks/${user_id}`);
+    let data = await response.json();
+    console.log(data)
+    return data;
+  }
+
+  export async function getUserGoals(user_id) {
+    let response = await fetch(`${TASKY_API_URL}/goals/${user_id}`);
     let data = await response.json();
     console.log(data)
     return data;

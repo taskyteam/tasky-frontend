@@ -74,24 +74,23 @@ class Tasks extends React.Component {
     const currentUserAdmin = currentUser.admin;
     return (
       <div className="pageContainer">
-        <div className="task-btn-nav">
-          <button className="btn-primary" onClick={() => this.props.history.push(`${this.props.match.url}`)}>
-            My Tasks
-          </button>
-          {currentUser.admin ? <button className="btn-primary" onClick={() => this.props.history.push(`${this.props.match.url}/householdtasks`)}>
-            Household Tasks
-          </button> : null}
-          <button className="btn-primary" onClick={() => this.props.history.push(`${this.props.match.url}/completedtasks`)}>
-            Completed Tasks
-          </button>
+      <div className="task-btn-nav">
+            <button className="btn-primary" onClick={() => this.props.history.push(`${this.props.match.url}`)}>
+              My Tasks
+            </button>
+            {currentUser.admin ? <button className="btn-primary" onClick={() => this.props.history.push(`${this.props.match.url}/householdtasks`)}>
+              Household Tasks
+            </button> : null}
+            <button className="btn-primary" onClick={() => this.props.history.push(`${this.props.match.url}/completedtasks`)}>
+              Completed Tasks
+            </button>
+          </div>
+          <Switch>
+            <Route exact path={`${this.props.match.path}/`} render={routeProps => <MyTasks {...routeProps} tasks={myTasks} populateTasks={() => this.populateTasks(household_id)}  />} />
+            <Route exact path={`${this.props.match.path}/householdtasks`} render={routeProps => <HouseholdTasks {...routeProps} tasks={householdTasks} populateTasks={() => this.populateTasks(household_id)}/>} />
+            <Route exact path={`${this.props.match.path}/completedtasks`} render={routeProps => <CompletedTasks {...routeProps} tasks={completedTasks} personalTasks={personalCompletedTasks} currentUserAdmin={currentUserAdmin} populateTasks={() => this.populateTasks(household_id)} />} />
+          </Switch>
         </div>
-        
-        <Switch>
-          <Route exact path={`${this.props.match.path}/`} render={routeProps => <MyTasks {...routeProps} tasks={myTasks} populateTasks={() => this.populateTasks(household_id)}  />} />
-          <Route exact path={`${this.props.match.path}/householdtasks`} render={routeProps => <HouseholdTasks {...routeProps} tasks={householdTasks} populateTasks={() => this.populateTasks(household_id)}/>} />
-          <Route exact path={`${this.props.match.path}/completedtasks`} render={routeProps => <CompletedTasks {...routeProps} tasks={completedTasks} personalTasks={personalCompletedTasks} currentUserAdmin={currentUserAdmin} populateTasks={() => this.populateTasks(household_id)} />} />
-        </Switch>
-      </div>
     );
   }
 }

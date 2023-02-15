@@ -11,6 +11,7 @@ import CreateAccount from "./components/CreateAccount";
 import Faq from "./components/Faq";
 import Contact from './components/Contact';
 import CreateOrJoin from "./components/CreateOrJoin";
+import CreateGoal from "./components/CreateGoal";
 
 
 
@@ -20,18 +21,23 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Header />
-        <Switch>
-          <Route  path="/welcome" component={Welcome} />
-          <Route exact path="/" component={Home} />
-          <Route  path="/create-household" component={CreateHousehold} />
-          <Route exact path ="/create-account" component={CreateAccount} />
-          <Route path="/create-or-join" component={CreateOrJoin} />
-          <Route exact path ="/login" component={Login} />
-          <Route  path="/tasks" component={Tasks} />
-          <Route  path="/create-task" component={CreateTask} />
-          <Route  path="/faq" component={Faq} />
-          <Route  path="/contact" component={Contact} />
-        </Switch>
+        <div className="main-margin">
+          <div className="main">
+            <Switch>
+              <Route  path="/welcome" component={Welcome} />
+              <Route exact path="/" component={Home} />
+              <Route  path="/create-household" component={CreateHousehold} />
+              <Route exact path ="/create-account" component={CreateAccount} />
+              <Route path="/create-or-join" component={CreateOrJoin} />
+              <Route exact path ="/login" component={Login} />
+              <Route  path="/tasks" component={Tasks} />
+              <Route  path="/create-task" component={CreateTask} />
+              <Route  path="/faq" component={Faq} />
+              <Route  path="/contact" component={Contact} />
+              <Route path="/create-goal" component={CreateGoal} />
+            </Switch>
+          </div>
+        </div>
       </BrowserRouter>
     </div>
   );
