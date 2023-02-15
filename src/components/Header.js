@@ -2,6 +2,7 @@ import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import Logo from "../Logo.png";
 
 
 
@@ -11,7 +12,10 @@ class Header extends React.Component{
             <div className="main-nav">
                  {[false].map((expand) => (
         <Navbar key={expand} expand={expand}>
-          <h1>Logo</h1>
+          <h1><img 
+          src={Logo} 
+          alt="TheLogo" 
+          className="logo"/></h1>
             <Navbar.Toggle/>
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
