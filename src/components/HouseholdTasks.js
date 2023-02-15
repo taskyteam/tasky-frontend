@@ -52,7 +52,7 @@ class HouseholdTasks extends Component {
             <p>Status: {task.status}</p>
             {task.points === 0 ? null : <p>Points: {task.points}</p>}
             {task.description === "" ? null : <p>Description: {task.description}</p>}
-            {/* <p>Assigned to: {task.username}  </p> */}
+            <p>Assigned to: {task.username}  </p>
             {task.status === "open" ? null : <button className="btn-primary" onClick={() => this.handleUpdateStatus(task.id)}>Approve</button>}          </div>
         ))}
       </div>

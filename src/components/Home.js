@@ -39,11 +39,11 @@ class Home extends Component {
         },
         isLoading: false,
       })
-      console.log(household_id)
-      console.log("household id")
+      // console.log(household_id)
+      // console.log("household id")
 
-      console.log(this.state.currentHousehold)
-      console.log(this.state.currentUser)
+      // console.log(this.state.currentHousehold)
+      // console.log(this.state.currentUser)
     }
   }
 
@@ -51,16 +51,22 @@ class Home extends Component {
     const {
       currentUser,
       currentHousehold,
+      isLoading
       //    household_tasks, isLoading
     } = this.state;
+    console.log(currentUser)
+    console.log("current user in Home")
+    if(isLoading) return <div className="household-info"> <p>Loading...</p></div>
     return (
       <div>
         <h1 className="home-title">Welcome {currentUser.username}! </h1>
         <div className="home-main">
+          
           <div className="household-info">
             <UserStats />
             <div className="household-name">{currentHousehold.name}</div>
-            {!currentUser.Admin ? null : <div className="household-key">Household Key:{currentHousehold.housekey}</div>}          <Link
+            {currentUser.admin ? <div className="household-key">House key: {currentHousehold.housekey}</div> : null}          
+            <Link
               to="/tasks"
             >
               <button className="btn-primary">Tasks</button>
