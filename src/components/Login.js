@@ -54,11 +54,13 @@ class Login extends Component {
   render() {
     const { error, email, password } = this.state;
     return (
-      <div className="pageContainer">
-        <h1>Login</h1>
+      <div className="pageContainer primary-main">
+        <h1 className="primary-title">Login</h1>
         <div className="inputBox">
           <label>
+            <div className="primary-text">
             Email:
+            </div>
             <input
             id="email-field"
             type="email"
@@ -69,7 +71,9 @@ class Login extends Component {
           </label>
           <br />
           <label>
+          <div className="primary-text">
             Password:
+            </div>
             <input
             type="password"
             onChange={this.handleInputFieldChange.bind(this, "password")}
@@ -77,7 +81,7 @@ class Login extends Component {
             />
           </label>
           <div>
-            <button className="btn-primary"
+            <button className="btn-primary "
             onClick={this.handleLoginAttempt.bind(this)}>Log in</button>
           </div>
           {error && (
