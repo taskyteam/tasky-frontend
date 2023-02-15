@@ -77,7 +77,6 @@ class Tasks extends React.Component {
         <div className="task-btn-nav">
           <button className="btn-primary" onClick={() => this.props.history.push(`${this.props.match.url}`)}>
             My Tasks
-
           </button>
           {currentUser.admin ? <button className="btn-primary" onClick={() => this.props.history.push(`${this.props.match.url}/householdtasks`)}>
             Household Tasks

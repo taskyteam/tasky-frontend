@@ -9,9 +9,6 @@ class MyTasks extends Component {
     };
   }
 
-
-
-
   handleUpdateStatus = async (id) => {
     this.setState({ isLoading: true });
     const { tasks } = this.props;
@@ -52,7 +49,7 @@ class MyTasks extends Component {
                 <p>Status: {task.status}</p>
                 {task.points === 0 ? null : <p>Points: {task.points}</p>}
                 {task.description === "" ? null : <p>Description: {task.description}</p>}
-                <button className="btn-primary" onClick={() => this.handleUpdateStatus(task.id)}>Approve</button>
+                <button className="btn-primary" onClick={() => this.handleUpdateStatus(task.id)}>Done</button>
               </div>
             ))
         }

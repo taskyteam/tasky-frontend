@@ -27,9 +27,8 @@ class CreateTask extends React.Component {
     
     try {
       const { title, description, assigned_to, points } = this.state;
-      const username = this.state.users.find((user) => user.id === +assigned_to);
-      console.log(username)
-      console.log("username")
+      const findAssingedUser = this.state.users.find((user) => user.id === +assigned_to);
+      const username = findAssingedUser.username;
       const household_id = this.state.currentHousehold.id;
       if (!title || !assigned_to || !points) {
         this.setState({
