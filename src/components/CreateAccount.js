@@ -61,8 +61,8 @@ class CreateAccount extends Component {
   render() {
     const { error, email, password, username, passwordretype } = this.state;
     return (
-      <div className="pageContainer">
-        <h1>Create account</h1>
+      <div className="pageContainer primary-main">
+        <h1 className="primary-title">Create account</h1>
         <div className="inputBox">
           <label>
             <input

@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import CreateTask from "./components/CreateTask";
 import Home from "./components/Home";
-//import Header from "./components/Header";
+import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import Login from "./components/Login";
 import Welcome from "./components/Welcome";
@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {/* <Header /> */}
+        <Header />
         <Switch>
           <Route  path="/welcome" component={Welcome} />
           <Route exact path="/" component={Home} />
