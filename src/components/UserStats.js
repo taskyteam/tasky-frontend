@@ -42,7 +42,7 @@ class UserStats extends Component {
               <svg viewBox="0 0 36 36" className="circular-chart">
               <defs>
                   <filter id="inset-shadow">
-                    <feFlood flood-color="black" />
+                    <feFlood floodColor="black" />
                     <feComposite operator="xor" in2="SourceGraphic" />
                     <feGaussianBlur stdDeviation="1" />
                     <feComposite

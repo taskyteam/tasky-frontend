@@ -23,7 +23,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-family: "DM Sans", sans-serif;
 }
 
 body {
@@ -121,6 +121,11 @@ body {
 
 .task p {
   text-decoration: none;
+}
+
+.logo {
+  margin: -20px -10px;
+  width: 50px;
 }
 
 /* Primary */
