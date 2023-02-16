@@ -67,13 +67,18 @@ class CreateOrJoin extends React.Component{
                     <Link to="/create-household">
                         <img src="https://i.imgur.com/1ZQ3Z0M.png" alt="logo" className="logo"/>
                         <h1>Create Household</h1>
+                        <button 
+                    className="btn-primary"
+                    >Create</button>
                     </Link>
                 </div>
                 <div className="join-household">
                     <img src="https://i.imgur.com/1ZQ3Z0M.png" alt="logo" className="logo"/>
                     <h1>Join Household</h1>
                     <input type="text" placeholder="Enter Household Code" className="household-code" onChange={this.handleHousekey}/>
-                    <button onClick={this.handleGetHousehold}>Join</button>
+                    <button 
+                    className="btn-primary"
+                    onClick={this.handleGetHousehold}>Join</button>
                 </div>
             </div>
         )

@@ -16,11 +16,11 @@ class Welcome extends Component {
             <button className="btn-primary login-btn">Log in</button>
         </Link>
         <Link
-          to="/signin"
+          to="/create-account"
           onClick={() => {
-            window.location.href = "/signin";
+            window.location.href = "/create-account";
           }}>
-            <button className="btn-primary">Sign in</button>
+            <button className="btn-primary">Sign up</button>
         </Link>
         </div>
       </div>

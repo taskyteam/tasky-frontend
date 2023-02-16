@@ -24,10 +24,10 @@ class Header extends React.Component{
               <Offcanvas.Body>
                 <Nav>
                   <Nav.Link 
-                  to="/Home"
+                  to="/"
                   className="header-nav"
                   onClick={() => {
-                    window.location.href = "/Home"; }}>
+                    window.location.href = "/"; }}>
                         Home</Nav.Link>
                   <Nav.Link 
                   to="/Faq"

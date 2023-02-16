@@ -48,11 +48,10 @@ class HouseholdTasks extends Component {
         <h2>Household Tasks</h2>
         {tasks.map((task, i) => (
           <div className="task" key={i} id={task.id}>
-            <p>Title: {task.title}</p>
-            <p>Status: {task.status}</p>
+            <p style={{fontSize: "1.5rem"}}>{task.title}</p>
             {task.points === 0 ? null : <p>Points: {task.points}</p>}
-            {task.description === "" ? null : <p>Description: {task.description}</p>}
-            <p>Assigned to: {task.username}  </p>
+            {task.description === "" ? null : <p> {task.description}</p>}
+            <p style={{color: "gray"}}>{task.username}  </p>
             {task.status === "open" ? null : <button className="btn-primary" onClick={() => this.handleUpdateStatus(task.id)}>Approve</button>}          </div>
         ))}
       </div>

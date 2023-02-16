@@ -58,16 +58,16 @@ class Home extends Component {
     } = this.state;
     console.log(currentUser)
     console.log("current user in Home")
-    if(isLoading) return <div className="household-info"> <img className="loadingLogo" src={logo} alt="loading" /></div>
+    if(isLoading) return <div className="household-info"><p>Loading...</p></div>
     return (
       <div>
-        <h1 className="home-title">Welcome {currentUser.username}! </h1>
-        <div className="home-main" style={{transition: "3s ease-in all"}}>
+        <h1>Welcome {currentUser.username}! </h1>
+        <p className="household-name">{currentHousehold.name}</p>
+            {currentUser.admin ? <p className="household-key">House key: {currentHousehold.housekey}</p> : null}          
+        <div style={{transition: "3s ease-in all"}}>
           
           <div className="household-info">
             <UserStats isLoading={isLoading} />
-            <div className="household-name">{currentHousehold.name}</div>
-            {currentUser.admin ? <div className="household-key">House key: {currentHousehold.housekey}</div> : null}          
             <Link
               to="/tasks"
             >

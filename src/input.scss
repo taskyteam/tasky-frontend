@@ -37,6 +37,8 @@ $color4: #6B9EA4;
     padding: 0;
     box-sizing: border-box;
     font-family: 'DM Sans', sans-serif;
+    text-align: center;
+    color: black;
 }
 
 body {
@@ -108,11 +110,7 @@ body {
 
 }
 
-
-
 // Stats circles
-
-
 .circle {
     stroke: #4CC790;
     fill: none;
@@ -120,9 +118,6 @@ body {
     stroke-linecap: round;
     animation: progress 1s ease-out forwards;
 }
-
-
-
 
 .household-info {
     width: 100%;
@@ -134,18 +129,25 @@ body {
     text-align: start;
     background-color: #fff;
     gap: 1rem;
+    background-color: $color2;
 }
 
 .task {
-    width: 100%;
+    width: 90%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: start;
-    background-color: #fff;
+    background-color: white;
+    border-radius: 30px;
     padding: 1rem;
+
+    p {
+        background-color: white;
+
+    }
 }
 
 .task p {
@@ -162,7 +164,7 @@ body {
 justify-content: center;
 align-items: center;
 padding: 18px 24px;
-margin: 10px;
+margin: 5px;
 
 width: 300px;
 height: 54px;
@@ -173,9 +175,6 @@ border-radius: 30px;
 border: none;
 box-shadow: 4px 7px 5px rgba(0, 0, 0, 0.25);
  
-    .login-btn {
-        
-    }
 }
 
 
@@ -209,9 +208,57 @@ input {
     text-align: center;
 }
 
+textarea {
+    background-color: white;
+    padding-top: 10px;
+    border: none;
+    border-radius: 30px;
+    width: 300px;
+    height: 100px;
+    margin: 10px;
+    text-align: center;
+    
+}
+
+option {
+        background-color: white;
+        border: none;
+        border-radius: 30px;
+        width: 300px;
+        height: 50px;
+        margin: 10px;
+        text-align: center;
+}
+
+select {
+    background-color: white;
+    border: none;
+    border-radius: 30px;
+    width: 300px;
+    height: 50px;
+    margin: 10px;
+    text-align: center;
+}
+
+
+
 h1 {
     font-size: 40px;
     margin: 20px;
+    color: black;
+}
+
+a {
+    text-decoration: none;
+
+    &:visited{
+        text-decoration: none;
+    }
+}
+
+
+h1:link {
+    
 }
 
 h2 {
@@ -221,23 +268,8 @@ h2 {
 
 p {
     margin: 20px;
-}
+    font-weight: bold;
 
-
-/* Welcome page */
-
-
-
-
-
-.home-main {
-    position: absolute;
-    top: 150px;
-}
-
-.household-info {
-    font-weight: bolder;
-    border-radius: 3px;
 }
 
 /* Nav */

@@ -45,10 +45,10 @@ class MyTasks extends Component {
           <h2>My Tasks</h2>
           {isLoading ? <div>loading...</div> : tasks.map((task, i) => (
               <div className="task" key={i} id={task.id}>
-                <p>Title: {task.title}</p>
-                <p>Status: {task.status}</p>
+                <p style={{fontSize: "1.5rem"}}>{task.title}</p>
+                
                 {task.points === 0 ? null : <p>Points: {task.points}</p>}
-                {task.description === "" ? null : <p>Description: {task.description}</p>}
+                {task.description !== "" ? null : <p>Description: {task.description}</p>}
                 <button className="btn-primary" onClick={() => this.handleUpdateStatus(task.id)}>Done</button>
               </div>
             ))
