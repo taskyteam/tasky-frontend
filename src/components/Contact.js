@@ -21,7 +21,9 @@ class Contact extends Component {
                 window.location.href = "/home";
               }}
             >
-              <button type="submit">Back</button>
+              <button 
+              className="btn-primary"
+              type="submit">Back</button>
             </Link>
           </div>
         );

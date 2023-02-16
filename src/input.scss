@@ -162,6 +162,7 @@ body {
 justify-content: center;
 align-items: center;
 padding: 18px 24px;
+margin: 10px;
 
 width: 300px;
 height: 54px;
@@ -173,13 +174,15 @@ border: none;
 box-shadow: 4px 7px 5px rgba(0, 0, 0, 0.25);
  
     .login-btn {
-        margin: 50px
+        
     }
 }
 
 
 
 .primary-main {
+    
+
     border-radius: 40%;
     padding: 40px;
     text-align: center;
@@ -202,37 +205,29 @@ input {
     border-radius: 30px;
     width: 300px;
     height: 50px;
+    margin: 10px;
+    text-align: center;
 }
 
+h1 {
+    font-size: 40px;
+    margin: 20px;
+}
+
+h2 {
+    font-size: 30px;
+    margin: 20px;
+}
+
+p {
+    margin: 20px;
+}
 
 
 /* Welcome page */
 
-.welcome-main {
-    margin-top: 100px;
-    width: 400px;
-    padding: 100px 50px;
-    border-radius: 10px;
-    border: 2px solid $color1;
-}
 
-.welcome-title {
-    margin-bottom: 50px;
-}
 
-.welcome-login-btn,
-.welcome-signin-btn {
-
-    padding: 20px 30px;
-    border: 1px solid $color3;
-    background-color: $color1;
-    border-radius: 5px;
-    margin: 20px;
-}
-
-.welcome-login-btn {}
-
-.welcome-signin-btn {}
 
 
 .home-main {
@@ -245,15 +240,6 @@ input {
     border-radius: 3px;
 }
 
-.tasks-btn,
-.add-task-btn {
-    width: 230px;
-    border: 2px solid rgb(184, 184, 184);
-    border-radius: 3px;
-    padding: 10px 20px;
-    color: #709d82;
-}
-
 /* Nav */
 
 .main-nav {
@@ -263,6 +249,7 @@ input {
     padding: 5px 20px;
     width: 100vw;
     height: 120px;
+
     .logoHeader{
         width: 50px;
         height: 100%;
@@ -271,5 +258,3 @@ input {
         padding: 0;
     }
 }
-
-.header-nav {}

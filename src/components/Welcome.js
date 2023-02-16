@@ -6,7 +6,7 @@ class Welcome extends Component {
     return (
       <div>
         <div className="primary-main">
-        <h1 className="primary-title">Welcome to Tasky!</h1>
+        <h1>Welcome to Tasky!</h1>
  
         <Link
           to="/login"
