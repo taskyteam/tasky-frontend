@@ -1,5 +1,6 @@
 import { Component } from "react"
 import { getLoginToken } from "../services/tasks";
+import loginImage from "../images/login.svg"
 
 class Login extends Component {
   constructor(props) {
@@ -55,33 +56,28 @@ class Login extends Component {
     const { error, email, password } = this.state;
     return (
       <div className="pageContainer primary-main">
+        <div className="illustration">
+        <img src={loginImage} alt="login"/>
+        </div>
         <h1 className="primary-title">Login</h1>
         <div className="inputBox">
-          <label>
-            <div className="primary-text">
-            Email:
-            </div>
             <input
+            placeholder="Email"
             id="email-field"
             type="email"
             onChange={this.handleInputFieldChange.bind(this, "email")}
             value={email}
             autoComplete="off"
             />
-          </label>
           <br />
-          <label>
-          <div className="primary-text">
-            Password:
-            </div>
             <input
+            placeholder="Password"
             type="password"
             onChange={this.handleInputFieldChange.bind(this, "password")}
             value={password}
             />
-          </label>
           <div>
-            <button className="btn-primary "
+            <button style={{marginTop: "2rem"}} className="btn-primary "
             onClick={this.handleLoginAttempt.bind(this)}>Log in</button>
           </div>
           {error && (
