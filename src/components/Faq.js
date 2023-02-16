@@ -13,9 +13,9 @@ class FAQ extends Component {
           til en gøy aktivitet for alle parter!
         </p>
         <Link
-          to="/home"
+          to="/"
           onClick={() => {
-            window.location.href = "/home";
+            window.location.href = "/";
           }}
         >
           <button 

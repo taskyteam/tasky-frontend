@@ -16,9 +16,9 @@ class Contact extends Component {
               Tasky@tasky.com
             </p>
             <Link
-              to="/home"
+              to="/"
               onClick={() => {
-                window.location.href = "/home";
+                window.location.href = "/";
               }}
             >
               <button 
