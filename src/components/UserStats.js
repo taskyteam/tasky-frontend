@@ -8,21 +8,26 @@ class UserStats extends Component {
     this.state = {
       tasks: [],
       goals: [],
+      isLoading: false,
     };
   }
 
   async componentDidMount() {
+    this.setState({ isLoading: true });
     const token = localStorage.getItem("TASKY_TOKEN");
     const payload = await jwtDecode(token);
     this.setState({
       tasks: await getUserTasks(payload.id),
       goals: await getUserGoals(payload.id),
     });
+    this.setState({ isLoading: false });
   }
 
   render() {
+
     const tasks = this.state.tasks;
     const goals = this.state.goals;
+    const { isLoading } = this.state;
     //const openTasks = tasks.filter(task => task.status === 'open');
     const completedTasks = tasks.filter((task) => task.status === "completed");
     const goalPoints = goals.reduce((acc, goal) => acc + goal.points, 0);
@@ -34,6 +39,10 @@ class UserStats extends Component {
     const percentageOfTasks =
       Math.round((completedTasks.length / tasks.length) * 100) || 49;
 
+    if (isLoading) {
+      return <div>Loading...</div>;
+    }
+    
     return (
       <div className="statsContainer">
         {goals.length !== 0 ? (

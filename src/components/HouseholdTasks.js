@@ -39,13 +39,11 @@ class HouseholdTasks extends Component {
     
     if(tasks.length === 0) return (
       <div className="household-info">
-        <h2>Household Tasks</h2>
             <div>No tasks available</div>
       </div>
     );
     return (
       <div className="household-info">
-        <h2>Household Tasks</h2>
         {tasks.map((task, i) => (
           <div className="task" key={i} id={task.id}>
             <p>Title: {task.title}</p>

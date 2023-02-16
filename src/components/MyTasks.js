@@ -35,14 +35,12 @@ class MyTasks extends Component {
     if (tasks.length === 0)
       return (
         <div className="household-info">
-          <h2>My Tasks</h2>
           <div>No tasks available</div>
         </div>
       );
     return (
       <div className="pageContainer">
         <div className="household-info">
-          <h2>My Tasks</h2>
           {isLoading ? <div>loading...</div> : tasks.map((task, i) => (
               <div className="task" key={i} id={task.id}>
                 <p>Title: {task.title}</p>

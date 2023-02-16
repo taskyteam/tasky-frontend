@@ -18,7 +18,6 @@ class CompletedTasks extends Component {
     
     if(tasks.length === 0) return (
       <div className="household-info">
-        <h2>Finished Tasks</h2>
             <div>No tasks available</div>
       </div>
     );
@@ -26,7 +25,6 @@ class CompletedTasks extends Component {
     if(currentUserAdmin){
       return (
         <div className="household-info">
-          <h2>Completed Tasks</h2>
           {
             isLoading ?  <div>loading...</div> : tasks.map((completedTasks, i) => (
             <div className="task" key={i}>
@@ -40,7 +38,6 @@ class CompletedTasks extends Component {
       );
     }
     return ( <div className="household-info">
-    <h2>Completed Tasks</h2>
     {
       isLoading ?  <div>loading...</div> : personalTasks.map((completedTasks, i) => (
       <div className="task" key={i}>

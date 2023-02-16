@@ -3,7 +3,6 @@ import UserStats from "./UserStats";
 import { Link } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import { getCurrentUser, getCurrentHousehold } from "../services/tasks";
-import logo from "../images/logo.png";
 
 class Home extends Component {
   constructor(props) {
@@ -58,11 +57,11 @@ class Home extends Component {
     } = this.state;
     console.log(currentUser)
     console.log("current user in Home")
-    if(isLoading) return <div className="household-info"> <img className="loadingLogo" src={logo} alt="loading" /></div>
+    if(isLoading) return <div className="household-info"> loading...</div>
     return (
       <div>
         <h1 className="home-title">Welcome {currentUser.username}! </h1>
-        <div className="home-main" style={{transition: "3s ease-in all"}}>
+        <div className="home-main" >
           
           <div className="household-info">
             <UserStats isLoading={isLoading} />
