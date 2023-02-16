@@ -25,19 +25,16 @@ class Header extends React.Component{
                 <Nav>
                   <Nav.Link 
                   to="/"
-                  className="header-nav"
                   onClick={() => {
                     window.location.href = "/"; }}>
                         Home</Nav.Link>
                   <Nav.Link 
                   to="/Faq"
-                  className="header-nav"
                   onClick={() => {
                     window.location.href = "/Faq"; }}>
                         FAQ</Nav.Link>
                   <Nav.Link 
                   to="/Contact"
-                  className="header-nav"
                   onClick={() => {
                     window.location.href = "/Contact"; }}>
                         Contact</Nav.Link>

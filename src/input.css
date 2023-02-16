@@ -239,6 +239,7 @@ p {
   padding: 5px 20px;
   width: 100vw;
   height: 120px;
+  border: none;
 }
 .main-nav .logoHeader {
   width: 50px;
