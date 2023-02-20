@@ -95,6 +95,7 @@ class CreateAccount extends Component {
             id="username-field"
             type="text"
             placeholder="Enter your username"
+            autoComplete="off"
             onChange={this.handleInputFieldChange.bind(this, "username")}
             value={username}
             />

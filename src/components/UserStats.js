@@ -34,10 +34,10 @@ class UserStats extends Component {
     const goalTitle = goals.map((goal) => goal.title);
     let points = 0;
     completedTasks.forEach((task) => (points += task.points));
-    points = 5636;
+    points = 300;
     const percentageOfGoal = Math.round((points / goalPoints) * 100);
     const percentageOfTasks =
-      Math.round((completedTasks.length / tasks.length) * 100) || 49;
+      Math.round((completedTasks.length / tasks.length) * 100) || 0;
 
     if (isLoading) {
       return <div>Loading...</div>;
@@ -87,13 +87,13 @@ class UserStats extends Component {
               </svg>
               <p className="percentage">{percentageOfGoal}%</p>
             </div>
-            <div>{goalTitle}</div>
-            <div>
+            <p>{goalTitle}</p>
+            <p>
               {points} / {goalPoints} 
-            </div>
+            </p>
           </div>
         ) : null}
-        {percentageOfTasks ? (
+        {tasks.length !== 0 ? (
           <div className="goalStats">
             <div className="circleContainer">
               <svg viewBox="0 0 36 36" className="circular-chart">
@@ -136,9 +136,9 @@ class UserStats extends Component {
               </svg>
               <p className="percentage">{percentageOfTasks}%</p>
             </div>
-            <div>
-              {completedTasks.length} out of {tasks.length} tasks done! 👍
-            </div>
+            <p>
+              {completedTasks.length} out of {tasks.length} tasks done!
+            </p>
           </div>
         ) : null}
       </div>

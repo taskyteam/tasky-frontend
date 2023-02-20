@@ -3,6 +3,7 @@ import UserStats from "./UserStats";
 import { Link } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import { getCurrentUser, getCurrentHousehold } from "../services/tasks";
+import keyIcon from "../images/keyIcon.svg"
 
 class Home extends Component {
   constructor(props) {
@@ -57,16 +58,16 @@ class Home extends Component {
     } = this.state;
     console.log(currentUser)
     console.log("current user in Home")
-    if(isLoading) return <div className="household-info"> loading...</div>
+    if(isLoading) return <div className="household-info"><p>Loading...</p></div>
     return (
       <div>
-        <h1 className="home-title">Welcome {currentUser.username}! </h1>
-        <div className="home-main" >
+        <h1>Welcome {currentUser.username}! </h1>
+        <p className="household-name">{currentHousehold.name}</p>
+            {currentUser.admin ? <p style={{marginLeft: "-10px"}}className="household-key"><img src={keyIcon} alt="key" />{currentHousehold.housekey}</p> : null}          
+        <div style={{transition: "3s ease-in all"}}>
           
           <div className="household-info">
             <UserStats isLoading={isLoading} />
-            <div className="household-name">{currentHousehold.name}</div>
-            {currentUser.admin ? <div className="household-key">House key: {currentHousehold.housekey}</div> : null}          
             <Link
               to="/tasks"
             >

@@ -28,10 +28,11 @@ class CompletedTasks extends Component {
           {
             isLoading ?  <div>loading...</div> : tasks.map((completedTasks, i) => (
             <div className="task" key={i}>
-              <p>Title: {completedTasks.title}</p>
-              <p>Status: {completedTasks.status}</p>
+              <p style={{fontSize: "1.5rem"}}> {completedTasks.title}</p>
               {completedTasks.points === 0 ? null : <p>Points: {completedTasks.points}</p>}
-              {completedTasks.description === "" ? null : <p>Description: {completedTasks.description}</p>}
+              {completedTasks.description === "" ? null : <p> {completedTasks.description}</p>}
+              <p style={{color: "gray"}}>{completedTasks.username}  </p>
+
             </div>
           ))}
         </div>
@@ -41,10 +42,10 @@ class CompletedTasks extends Component {
     {
       isLoading ?  <div>loading...</div> : personalTasks.map((completedTasks, i) => (
       <div className="task" key={i}>
-        <p>Title: {completedTasks.title}</p>
-        <p>Status: {completedTasks.status}</p>
+        <p style={{fontSize: "1.5rem"}}>{completedTasks.title}</p>
         {completedTasks.points === 0 ? null : <p>Points: {completedTasks.points}</p>}
-        {completedTasks.description === "" ? null : <p>Description: {completedTasks.description}</p>}
+        {completedTasks.description === "" ? null : <p> {completedTasks.description}</p>}
+
       </div>
     ))}
   </div>

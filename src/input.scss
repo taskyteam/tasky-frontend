@@ -32,10 +32,13 @@ $color4: #6B9EA4;
 
 //Styles
 * {
+    background-color: $color2;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'DM Sans', sans-serif;
+    text-align: center;
+    color: black;
 }
 
 body {
@@ -45,10 +48,8 @@ body {
 }
 
 .main-margin{
-    margin-top: 120px;
+    margin-top: 100px;
 }
-
-
 
 
 .form {
@@ -76,7 +77,6 @@ body {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 1rem;
         text-align: right;
 
         .circleContainer {
@@ -98,7 +98,7 @@ body {
 
             .circular-chart {
                 display: block;
-                margin: 10px auto;
+                margin: 0px auto;
                 max-width: 80%;
                 height: 200px;
                 position: relative;
@@ -109,10 +109,7 @@ body {
 
 }
 
-
 // Stats circles
-
-
 .circle {
     stroke: #4CC790;
     fill: none;
@@ -120,9 +117,6 @@ body {
     stroke-linecap: round;
     animation: progress 1s ease-out forwards;
 }
-
-
-
 
 .household-info {
     width: 100%;
@@ -134,18 +128,34 @@ body {
     text-align: start;
     background-color: #fff;
     gap: 1rem;
+    margin-top: 1rem;
+    background-color: $color2;
+}
+
+
+.goalStats{
+    
+    p{
+        margin: 0;
+    }
 }
 
 .task {
-    width: 100%;
+    width: 90%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: start;
-    background-color: #fff;
+    background-color: white;
+    border-radius: 30px;
     padding: 1rem;
+
+    p {
+        background-color: white;
+
+    }
 }
 
 .task p {
@@ -159,22 +169,41 @@ body {
 
 /* Primary */
 .btn-primary {
-    background-color: $color3;
-    border: none;
+justify-content: center;
+align-items: center;
+padding: 18px 24px;
+margin: 5px;
+
+width: 300px;
+height: 54px;
+right: 40px;
+
+background: #5D898E;
+border-radius: 30px;
+border: none;
+box-shadow: 4px 7px 5px rgba(0, 0, 0, 0.25);
+  //indent when focused tab
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 0.2rem ;
+        color:invert($color: #000000)
+    }
+
+ 
 }
 
+
+
 .primary-main {
-    border: 2px solid $color1;
     border-radius: 40%;
     padding: 40px;
     text-align: center;
-    width: 400px;
+    width: 100vw;
 }
-
-/* Login */
 
 .primary-title {
     margin-bottom: 30px;
+    
 }
 
 .primary-text {
@@ -182,52 +211,82 @@ body {
     text-align: center;
 }
 
-/* Welcome page */
-
-.welcome-main {
-    margin-top: 100px;
-    width: 400px;
-    padding: 100px 50px;
-    border-radius: 10px;
-    border: 2px solid $color1;
+input {
+    background-color: white;
+    border: none;
+    border-radius: 30px;
+    width: 300px;
+    height: 50px;
+    margin: 10px;
+    text-align: center;
 }
 
-.welcome-title {
-    margin-bottom: 50px;
+.inputBox {
+  margin: 0 auto;
 }
 
-.welcome-login-btn,
-.welcome-signin-btn {
+textarea {
+    background-color: white;
+    padding-top: 10px;
+    border: none;
+    border-radius: 30px;
+    width: 300px;
+    height: 100px;
+    margin: 10px;
+    text-align: center;
+    
+}
 
-    padding: 20px 30px;
-    border: 1px solid $color3;
-    background-color: $color1;
-    border-radius: 5px;
+option {
+        background-color: white;
+        border: none;
+        border-radius: 30px;
+        width: 300px;
+        height: 50px;
+        margin: 10px;
+        text-align: center;
+}
+
+select {
+    background-color: white;
+    border: none;
+    border-radius: 30px;
+    width: 300px;
+    height: 50px;
+    margin: 10px;
+    text-align: center;
+}
+
+
+
+h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: black;
+}
+
+a {
+    text-decoration: none;
+
+    &:visited{
+        text-decoration: none;
+    }
+}
+
+
+h1:link {
+    
+}
+
+h2 {
+    font-size: 30px;
     margin: 20px;
 }
 
-.welcome-login-btn {}
+p {
+    margin: 20px;
+    font-weight: bold;
 
-.welcome-signin-btn {}
-
-
-.home-main {
-    position: absolute;
-    top: 150px;
-}
-
-.household-info {
-    font-weight: bolder;
-    border-radius: 3px;
-}
-
-.tasks-btn,
-.add-task-btn {
-    width: 230px;
-    border: 2px solid rgb(184, 184, 184);
-    border-radius: 3px;
-    padding: 10px 20px;
-    color: #709d82;
 }
 
 /* Nav */
@@ -238,14 +297,25 @@ body {
     color: white;
     padding: 5px 20px;
     width: 100vw;
-    height: 120px;
+    height: 100px;
+    border: none;
+
     .logoHeader{
         width: 50px;
         height: 100%;
-
         margin: 0;
         padding: 0;
     }
 }
 
-.header-nav {}
+.illustration {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 200px;
+    margin-left: 3rem;
+    
+}
+
+.illustration-house {
+  margin-top: 40px;
+}

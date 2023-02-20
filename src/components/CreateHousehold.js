@@ -77,14 +77,14 @@ class CreateHousehold extends React.Component {
     return (
       <div className="pageContainer">
         <div className="inputBox">
-          <h1>Create Task</h1>
-          <label htmlFor="title">Household Name</label>
+          <h1>Create Household</h1>
           <input
             type="text"
             name="title"
+            placeholder="Household Name"
             onChange={(event) => this.setState({ title: event.target.value })}
           />
-          <button type="submit" onClick={this.handleNewHousehold}>
+          <button className="btn-primary" type="submit" onClick={this.handleNewHousehold}>
             Create Household
           </button>
         </div>

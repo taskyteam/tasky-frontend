@@ -88,7 +88,7 @@ class CreateTask extends React.Component {
         <div className="pageContainer">
           <h1>Task Created</h1>
           <Link to="/">
-            <button type="submit">Back</button>
+            <button className="btn-primary" type="submit">Back</button>
           </Link>
         </div>
       );
@@ -97,21 +97,22 @@ class CreateTask extends React.Component {
         <div className="pageContainer">
           <h1>Create Task</h1>
           <div className="inputBox">
-            <label htmlFor="title">Title</label>
+            <label htmlFor="title"></label>
             <input
               type="text"
               name="title"
+              placeholder="Title"
               onChange={(event) => this.setState({ title: event.target.value })}
             />
-            <label htmlFor="description">Description</label>
             <textarea className="createDescription"
               type="text"
               name="description"
+              placeholder="Description"
               onChange={(event) =>
                 this.setState({ description: event.target.value })
               }
             />
-            <label htmlFor="assigned_to">Assign To</label>
+           
             <select
               name="assigned_to"
               onChange={(event) =>
@@ -127,10 +128,10 @@ class CreateTask extends React.Component {
                 );
               })}
             </select>
-            <label htmlFor="points">Points</label>
             <input
               type="number"
               name="points"
+              placeholder="Points"
               onChange={(event) => this.setState({ points: event.target.value })}
             />
             <button className="btn-primary" type="submit" onClick={this.handleNewTask}>

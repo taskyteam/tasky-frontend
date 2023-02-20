@@ -16,12 +16,14 @@ class Contact extends Component {
               Tasky@tasky.com
             </p>
             <Link
-              to="/home"
+              to="/"
               onClick={() => {
-                window.location.href = "/home";
+                window.location.href = "/";
               }}
             >
-              <button type="submit">Back</button>
+              <button 
+              className="btn-primary"
+              type="submit">Back</button>
             </Link>
           </div>
         );
